@@ -1,0 +1,58 @@
+{
+  "name": "@jakoblierman/commitlint-config",
+  "description": "Commit lint configuration",
+  "keywords": [
+    "commitlint",
+    "commitlint-config",
+    "conventional-changelog"
+  ],
+  "version": "2.0.1",
+  "author": {
+    "name": "Jakob Lierman",
+    "email": "jakob.lierman@gmail.com",
+    "url": "https://jakoblierman.be"
+  },
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "clean": "rm -rf dist .turbo",
+    "dev": "tsup --watch",
+    "format": "prettier --write --ignore-unknown .",
+    "lint": "eslint",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@commitlint/config-conventional": "~19.8.1"
+  },
+  "devDependencies": {
+    "@commitlint/lint": "^19.8.1",
+    "@commitlint/load": "^19.8.1",
+    "@commitlint/types": "^19.8.1",
+    "@types/node": "^22.10.2",
+    "eslint": "^8",
+    "husky": "^9.1.7",
+    "ts-essentials": "^10.1.1",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.4"
+  },
+  "peerDependencies": {
+    "@commitlint/cli": "^19.8.1"
+  }
+}
