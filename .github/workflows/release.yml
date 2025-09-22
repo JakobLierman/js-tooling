@@ -2,7 +2,7 @@ name: Release
 
 on:
   push:
-    branches: [main, staging, develop]
+    branches: [main, staging]
   workflow_dispatch:
     inputs:
       release_type:
@@ -13,7 +13,6 @@ on:
         options:
           - production
           - beta
-          - alpha
 
 env:
   DO_NOT_TRACK: ${{ vars.DO_NOT_TRACK }}
@@ -75,8 +74,6 @@ jobs:
             echo "type=production" >> $GITHUB_OUTPUT
           elif [ "${{ github.ref }}" = "refs/heads/staging" ]; then
             echo "type=beta" >> $GITHUB_OUTPUT
-          elif [ "${{ github.ref }}" = "refs/heads/develop" ]; then
-            echo "type=alpha" >> $GITHUB_OUTPUT
           else
             echo "type=production" >> $GITHUB_OUTPUT
           fi
