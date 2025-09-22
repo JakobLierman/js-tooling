@@ -1,4 +1,4 @@
-# Custom Prettier Configuration
+# Prettier Configuration
 
 This package provides a custom [Prettier](https://prettier.io/) configuration to maintain consistent code formatting across your projects.
 

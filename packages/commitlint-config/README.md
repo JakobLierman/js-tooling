@@ -1,4 +1,4 @@
-# Personal Commitlint Configuration
+# Commitlint Configuration
 
 This package provides a custom [commitlint](https://commitlint.js.org/#/) configuration to ensure consistent and meaningful commit messages in your projects.
 

@@ -1,4 +1,4 @@
-# Custom TypeScript Configuration
+# TypeScript Configuration
 
 This package provides a custom [TypeScript](https://www.typescriptlang.org/) configuration to maintain consistent TypeScript usage across your projects.
 
