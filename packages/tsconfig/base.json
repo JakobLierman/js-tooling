@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Default",
+  "extends": [
+    "@tsconfig/recommended/tsconfig.json",
+    "@tsconfig/strictest/tsconfig.json",
+    "@tsconfig/node-lts/tsconfig.json"
+  ],
+  "compilerOptions": {
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "checkJs": false,
+    "downlevelIteration": true,
+    "exactOptionalPropertyTypes": false,
+    "inlineSources": false,
+    "moduleDetection": "force",
+    "preserveWatchOutput": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "@/test/*": ["test/*"],
+      "@/types/*": ["types/*"],
+      "@/config/*": ["config/*"],
+      "@/public/*": ["public/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist", "coverage"]
+}

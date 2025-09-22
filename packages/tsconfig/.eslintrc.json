@@ -1,0 +1,11 @@
+{
+  "root": true,
+  "extends": [
+    "@jakoblierman/eslint-config",
+    "@jakoblierman/eslint-config/turborepo"
+  ],
+  "parserOptions": {
+    "project": true,
+    "tsconfigRootDir": "./"
+  }
+}

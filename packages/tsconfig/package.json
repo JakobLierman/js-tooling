@@ -1,0 +1,53 @@
+{
+  "name": "@jakoblierman/tsconfig",
+  "description": "Personal TypeScript configuration",
+  "keywords": [
+    "tsconfig",
+    "typescript"
+  ],
+  "version": "0.1.2",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "main": "base.json",
+  "files": [
+    "base.json",
+    "bun.json",
+    "react.json",
+    "nextjs.json"
+  ],
+  "scripts": {
+    "lint": "eslint",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@tsconfig/bun": "~1.0.8",
+    "@tsconfig/next": "~2.0.3",
+    "@tsconfig/node-lts": "~22.0.2",
+    "@tsconfig/recommended": "~1.0.10",
+    "@tsconfig/strictest": "~2.0.5"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@jakoblierman/eslint-config": "~0.14.3",
+    "@release-it/conventional-changelog": "^10.0.1",
+    "@vitest/coverage-v8": "^3.2.4",
+    "husky": "^9.1.7",
+    "lint-staged": "latest",
+    "prettier": "^3.6.2",
+    "release-it": "^19.0.5",
+    "ts-essentials": "^10.1.1",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.4"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.2"
+  },
+  "overrides": {
+    "typescript": "~5.9.2"
+  }
+}
