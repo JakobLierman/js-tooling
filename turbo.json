@@ -9,7 +9,6 @@
       "inputs": [
         "$TURBO_DEFAULT$",
         "!README.md",
-        "!.next/**",
         "!scripts/**",
         "!.eslintrc.json",
         "!.lintstagedrc.json",
@@ -33,6 +32,31 @@
       "envMode": "loose",
       "cache": false,
       "persistent": true
+    },
+    "test": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!README.md",
+        "!scripts/**",
+        "!.eslintrc.json",
+        "!.lintstagedrc.json",
+        "!.npm-upgrade.json",
+        "!.prettierignore",
+        "!.prettierrc"
+      ]
+    },
+    "//#test:root": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!README.md",
+        "!scripts/**",
+        "!.eslintrc.json",
+        "!.lintstagedrc.json",
+        "!.npm-upgrade.json",
+        "!.prettierignore",
+        "!.prettierrc"
+      ],
+      "outputs": ["coverage/**"]
     },
     "lint": {
       "dependsOn": ["//#lint:root", "^build"],

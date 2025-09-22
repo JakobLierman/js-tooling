@@ -44,15 +44,17 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           registry-url: 'https://npm.pkg.github.com'
           cache: 'pnpm'
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -84,37 +86,39 @@ jobs:
           version: pnpm changeset version
           commit: 'chore: release packages'
           title: 'chore: release packages'
+          commitMode: 'github-api'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Handle Snapshot Release
         if: steps.release-type.outputs.type != 'production'
-        run: |
-          # Create snapshot versions
-          pnpm changeset version --snapshot ${{ steps.release-type.outputs.type }}
-
-          # Get the new version numbers for git tagging
-          for package in packages/*/; do
-            if [ -f "$package/package.json" ]; then
-              package_name=$(cat "$package/package.json" | jq -r '.name')
-              new_version=$(cat "$package/package.json" | jq -r '.version')
-              echo "Creating git tag for $package_name@$new_version"
-              git tag "$package_name@$new_version"
-            fi
-          done
-
-          # Publish with appropriate tag
-          pnpm changeset publish --tag ${{ steps.release-type.outputs.type }}
+        uses: changesets/action@v1
+        with:
+          publish: pnpm changeset publish --tag ${{ steps.release-type.outputs.type }}
+          version: pnpm changeset version --snapshot ${{ steps.release-type.outputs.type }}
+          commit: 'chore: release ${{ steps.release-type.outputs.type }} packages'
+          title: 'chore: release ${{ steps.release-type.outputs.type }} packages'
+          commitMode: 'github-api'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Commit and push changes
-        if: steps.release-type.outputs.type != 'production'
+      - name: Create Git Tags
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add packages/*/package.json packages/*/CHANGELOG.md
-          git commit -m "chore: release ${{ steps.release-type.outputs.type }} packages" || exit 0
-          git push --follow-tags
+          # Create tags only for packages that were actually updated
+          for package in packages/*/; do
+            if [ -f "$package/package.json" ]; then
+              package_name=$(cat "$package/package.json" | jq -r '.name')
+              new_version=$(cat "$package/package.json" | jq -r '.version')
+              
+              # Check if this package was actually updated by looking for changes in package.json
+              if git diff --quiet HEAD~1 HEAD -- "$package/package.json"; then
+                echo "No changes detected for $package_name, skipping tag"
+              else
+                echo "Creating git tag for $package_name@$new_version"
+                git tag "$package_name@$new_version"
+              fi
+            fi
+          done
+          git push --tags
