@@ -1,7 +1,5 @@
 # Custom TypeScript Configuration
 
-[![TypeScript Config](https://img.shields.io/badge/typescript-config-blue.svg)](https://www.npmjs.com/package/@jakoblierman/tsconfig)
-
 This package provides a custom [TypeScript](https://www.typescriptlang.org/) configuration to maintain consistent TypeScript usage across your projects.
 
 ## Installation

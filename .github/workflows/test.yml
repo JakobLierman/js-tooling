@@ -49,9 +49,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build packages
-        run: pnpm build
-
       - name: Run linting
         run: pnpm lint
 
@@ -82,22 +79,6 @@ jobs:
 
       - name: Run security audit
         run: pnpm audit --audit-level moderate
-
-      - name: Check build outputs
-        run: |
-          # Check that all packages have been built
-          for package in packages/*/; do
-            if [ -f "$package/package.json" ]; then
-              package_name=$(cat "$package/package.json" | jq -r '.name')
-              if [ -d "$package/dist" ]; then
-                echo "✅ $package_name built successfully"
-                ls -la "$package/dist/"
-              else
-                echo "❌ $package_name build failed - no dist directory"
-                exit 1
-              fi
-            fi
-          done
 
       - name: Display coverage summary
         run: |

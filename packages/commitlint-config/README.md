@@ -1,7 +1,5 @@
 # Personal Commitlint Configuration
 
-[![Commitlint Config](https://img.shields.io/badge/commitlint-config-blue.svg)](https://www.npmjs.com/package/@JakobLierman/commitlint-config)
-
 This package provides a custom [commitlint](https://commitlint.js.org/#/) configuration to ensure consistent and meaningful commit messages in your projects.
 
 ## Installation
