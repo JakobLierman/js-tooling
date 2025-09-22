@@ -22,6 +22,7 @@ env:
 
 jobs:
   test:
+    name: Test Packages
     uses: ./.github/workflows/test.yml
     with:
       include-pr-comment: false
@@ -61,6 +62,9 @@ jobs:
 
       - name: Build packages
         run: pnpm build
+
+      - name: Generate automated changesets
+        run: pnpm changeset:auto
 
       - name: Determine release type
         id: release-type
