@@ -1,0 +1,46 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local", ".env", "**/.env"],
+  "globalEnv": ["GITHUB_TOKEN", "PACKAGE_VERSION", "NODE_ENV", "TEST"],
+  "globalPassThroughEnv": ["CI", "DEBUG", "GITHUB_*"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!README.md",
+        "!.next/**",
+        "!scripts/**",
+        "!.eslintrc.json",
+        "!.lintstagedrc.json",
+        "!.npm-upgrade.json",
+        "!.prettierignore",
+        "!.prettierrc",
+        "!vitest.config.ts",
+        "!**/*.test.ts",
+        "!**/*.test.tsx",
+        "!**/test/**/*"
+      ],
+      "outputs": [".next/**", "dist/**"]
+    },
+    "start": {
+      "dependsOn": ["build"],
+      "cache": false,
+      "persistent": true
+    },
+    "dev": {
+      "dependsOn": ["^build"],
+      "envMode": "loose",
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "dependsOn": ["//#lint:root", "^build"],
+      "inputs": ["$TURBO_DEFAULT$", "!.lintstagedrc.json", "!.npm-upgrade.json"]
+    },
+    "//#lint:root": {},
+    "clean": {
+      "cache": false
+    }
+  }
+}
