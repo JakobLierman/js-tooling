@@ -16,6 +16,9 @@ const config = defineConfig(
   reactHooksPluginConfigs['recommended-latest'],
   // TODO: XSS plugin
   {
+    settings: {
+      react: { version: 'detect' },
+    },
     rules: {
       'react/function-component-definition': [
         'error',

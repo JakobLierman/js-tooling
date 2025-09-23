@@ -25,13 +25,12 @@
     "prepare": "husky",
     "start": "turbo run start",
     "test": "turbo run test:root",
-    "test:root": "dotenvx run -- vitest run"
+    "test:root": "vitest run"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.7",
     "@commitlint/cli": "^19.8.1",
-    "@dotenvx/dotenvx": "^1.50.1",
     "@jakoblierman/commitlint-config": "workspace:*",
     "@jakoblierman/eslint-config": "workspace:*",
     "@jakoblierman/prettier-config": "workspace:*",
