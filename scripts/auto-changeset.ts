@@ -1,14 +1,11 @@
-#!/usr/bin/env tsx
-
-import { execSync } from 'child_process';
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
-import { join } from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { execSync } from 'node:child_process';
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const rootDir = join(__dirname, '..');
+const __dirname = path.dirname(__filename);
+const rootDir = path.join(__dirname, '..');
 
 // Types
 type VersionBump = 'major' | 'minor' | 'patch';
@@ -52,13 +49,14 @@ const VERSION_BUMP_MAP: Record<string, VersionBump> = {
 };
 
 // Get package information
-const getPackageInfo = (packagePath: string): PackageInfo | null => {
+const getPackageInfo = (packagePath: string): PackageInfo | undefined => {
   try {
-    const packageJsonPath = join(packagePath, 'package.json');
+    const packageJsonPath = path.join(packagePath, 'package.json');
     const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8')) as {
       name: string;
       version: string;
     };
+
     return {
       name: packageJson.name,
       version: packageJson.version,
@@ -70,14 +68,15 @@ const getPackageInfo = (packagePath: string): PackageInfo | null => {
       `Could not read package.json for ${packagePath}:`,
       (error as Error).message,
     );
-    return null;
+
+    return undefined;
   }
 };
 
 // Get all packages in the workspace
 const getAllPackages = (): PackageInfo[] => {
   const packages: PackageInfo[] = [];
-  const packagesDir = join(rootDir, 'packages');
+  const packagesDir = path.join(rootDir, 'packages');
 
   try {
     const packageDirs = execSync('ls packages/', {
@@ -88,7 +87,7 @@ const getAllPackages = (): PackageInfo[] => {
       .split('\n');
 
     for (const packageDir of packageDirs) {
-      const packagePath = join(packagesDir, packageDir);
+      const packagePath = path.join(packagesDir, packageDir);
       const packageInfo = getPackageInfo(packagePath);
       if (packageInfo) {
         packages.push(packageInfo);
@@ -123,7 +122,7 @@ const getChangedPackagesFromGit = (): string[] => {
       if (file.startsWith('packages/')) {
         const packageDir = file.split('/')[1];
         if (!packageDir) continue;
-        const packagePath = join(rootDir, 'packages', packageDir);
+        const packagePath = path.join(rootDir, 'packages', packageDir);
         const packageInfo = getPackageInfo(packagePath);
         if (packageInfo) {
           changedPackages.add(packageInfo.name);
@@ -131,12 +130,13 @@ const getChangedPackagesFromGit = (): string[] => {
       }
     }
 
-    return Array.from(changedPackages);
+    return [...changedPackages];
   } catch (error) {
     console.warn(
       'Could not get changed packages from git:',
       (error as Error).message,
     );
+
     return [];
   }
 };
@@ -160,12 +160,13 @@ const getChangedPackagesFromTurbo = (): string[] => {
       }
     }
 
-    return Array.from(changedPackages);
+    return [...changedPackages];
   } catch (error) {
     console.warn(
       'Could not get changed packages from Turborepo:',
       (error as Error).message,
     );
+
     return [];
   }
 };
@@ -196,6 +197,7 @@ const getCommitsForPackage = (
       `Could not get commits for package ${packageName}:`,
       (error as Error).message,
     );
+
     return [];
   }
 };
@@ -233,12 +235,14 @@ const getCommitsSinceLastRelease = (): string[] => {
         .trim()
         .split('\n')
         .filter(Boolean);
+
       return commits;
     } catch (fallbackError) {
       console.error(
         'Could not get any commits:',
         (fallbackError as Error).message,
       );
+
       return [];
     }
   }
@@ -255,17 +259,17 @@ const parseCommitMessage = (commitMessage: string): VersionBump => {
   }
 
   // Check for exclamation mark syntax (any type can have breaking changes)
-  if (message.match(/^(\w+)(\(.+\))?!:/)) {
+  if (/^\w+(?:\(.+\))?!:/.test(message)) {
     return 'major';
   }
 
   // Parse conventional commit format
-  const match = message.match(/^(\w+)(\(.+\))?(!)?:/);
+  const match = /^(\w+)(?:\(.+\))?!?:/.exec(message);
   if (match) {
     const type = match[1];
     if (!type) return 'patch';
 
-    return VERSION_BUMP_MAP[type] || 'patch';
+    return VERSION_BUMP_MAP[type] ?? 'patch';
   }
 
   return 'patch';
@@ -273,10 +277,10 @@ const parseCommitMessage = (commitMessage: string): VersionBump => {
 
 // Get the highest version bump from commits
 const getHighestVersionBump = (commits: string[]): VersionBump => {
-  const bumps = commits.map(parseCommitMessage);
+  const bumps = new Set(commits.map(parseCommitMessage));
 
-  if (bumps.includes('major')) return 'major';
-  if (bumps.includes('minor')) return 'minor';
+  if (bumps.has('major')) return 'major';
+  if (bumps.has('minor')) return 'minor';
 
   return 'patch';
 };
@@ -290,6 +294,7 @@ const generateChangesetContent = (
   const changes = commits
     .map((commit) => {
       const message = commit.replace(/^[a-f0-9]+ /, '');
+
       return `- ${message}`;
     })
     .join('\n');
@@ -307,32 +312,34 @@ const createChangesetFile = (
   versionBump: VersionBump,
   commits: string[],
 ): string => {
-  const changesetDir = join(rootDir, '.changeset');
+  const changesetDir = path.join(rootDir, '.changeset');
   if (!existsSync(changesetDir)) {
     mkdirSync(changesetDir, { recursive: true });
   }
 
   const timestamp = Date.now();
-  const filename = `auto-${packageName.replace('@', '').replace('/', '-')}-${timestamp}.md`;
-  const filepath = join(changesetDir, filename);
+  const filename = `auto-${packageName.replace('@', '').replace('/', '-')}-${timestamp.toString()}.md`;
+  const filepath = path.join(changesetDir, filename);
 
   const content = generateChangesetContent(packageName, versionBump, commits);
   writeFileSync(filepath, content);
 
   console.log(`Created changeset for ${packageName}: ${filename}`);
+
   return filepath;
 };
 
 // Main function
-const main = async (): Promise<void> => {
+const main = (): Promise<void> | void => {
   console.log('🚀 Generating automated changesets...');
 
   // Get all packages
   const packages = getAllPackages();
-  console.log(`Found ${packages.length} packages`);
+  console.log(`Found ${packages.length.toString()} packages`);
 
   if (packages.length === 0) {
     console.log('No packages found, skipping changeset generation');
+
     return;
   }
 
@@ -348,19 +355,23 @@ const main = async (): Promise<void> => {
     ...gitChangedPackages,
     ...turboChangedPackages,
   ]);
-  const changedPackageNames = Array.from(allChangedPackages);
+  const changedPackageNames = [...allChangedPackages];
 
   if (changedPackageNames.length === 0) {
     console.log('No packages changed, skipping changeset generation');
+
     return;
   }
 
   // Get commits since last release
   const allCommits = getCommitsSinceLastRelease();
-  console.log(`Found ${allCommits.length} commits since last release`);
+  console.log(
+    `Found ${allCommits.length.toString()} commits since last release`,
+  );
 
   if (allCommits.length === 0) {
     console.log('No commits found, skipping changeset generation');
+
     return;
   }
 
@@ -394,6 +405,7 @@ const main = async (): Promise<void> => {
 
   if (changedPackages.length === 0) {
     console.log('No packages to process, skipping changeset generation');
+
     return;
   }
 
@@ -413,8 +425,14 @@ const main = async (): Promise<void> => {
     }
   }
 
-  console.log(`✅ Generated ${changedPackages.length} automated changesets!`);
+  console.log(
+    `✅ Generated ${changedPackages.length.toString()} automated changesets!`,
+  );
 };
 
-// Run the script
-main().catch(console.error);
+try {
+  // Run the script
+  await main();
+} catch (error) {
+  console.error(error);
+}

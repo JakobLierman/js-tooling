@@ -29,12 +29,12 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@commitlint/config-conventional": "~19.8.1"
+    "@commitlint/config-conventional": "~19.8.1",
+    "@commitlint/types": "~19.8.1"
   },
   "devDependencies": {
     "@commitlint/lint": "^19.8.1",
     "@commitlint/load": "^19.8.1",
-    "@commitlint/types": "^19.8.1",
     "@jakoblierman/tsconfig": "workspace:*",
     "@types/node": "^22",
     "tsup": "^8.5.0",

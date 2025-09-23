@@ -1,9 +1,9 @@
 import { defineConfig, globalIgnores } from 'eslint/config';
 import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
+import { configs as tseslintConfigs, parser } from 'typescript-eslint';
 import nodePlugin from 'eslint-plugin-n';
 import importPlugin from 'eslint-plugin-import';
-import regexpPlugin from 'eslint-plugin-regexp';
+import { configs as regexpPluginConfigs } from 'eslint-plugin-regexp';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import unicornPlugin from 'eslint-plugin-unicorn';
 import unusedImportsPlugin from 'eslint-plugin-unused-imports';
@@ -47,7 +47,7 @@ const config = defineConfig(
   eslint.configs.recommended,
   nodePlugin.configs['flat/recommended'],
   importPlugin.flatConfigs.recommended,
-  regexpPlugin.configs['flat/recommended'],
+  regexpPluginConfigs['flat/recommended'],
   jsdocPlugin.configs['flat/recommended'],
   unicornPlugin.configs.recommended,
   stylisticPlugin.configs.recommended,
@@ -106,6 +106,7 @@ const config = defineConfig(
       'jsdoc/require-param': ['warn', { checkDestructured: false }], // Disable destructured checks, as they are not always necessary
       'jsdoc/check-param-names': ['warn', { checkDestructured: false }], // Disable destructured checks, as they are not always necessary
       // eslint-plugin-unicorn
+      'unicorn/no-array-callback-reference': 'off', // Don't like this rule in their opinionated configuration
       'unicorn/no-array-reduce': 'off',
       'unicorn/no-useless-undefined': 'off',
       'unicorn/switch-case-braces': 'off',
@@ -135,13 +136,13 @@ const config = defineConfig(
   {
     files: typescriptFiles, // TypeScript files extensions
     extends: [
-      tseslint.configs.strictTypeChecked,
-      tseslint.configs.stylisticTypeChecked,
+      tseslintConfigs.strictTypeChecked,
+      tseslintConfigs.stylisticTypeChecked,
       jsdocPlugin.configs['flat/recommended-typescript'],
       importPlugin.flatConfigs.typescript,
     ],
     languageOptions: {
-      parser: tseslint.parser,
+      parser,
       parserOptions: {
         projectService: true,
       },

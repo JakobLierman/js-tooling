@@ -1,6 +1,6 @@
 import { defineConfig } from 'eslint/config';
 import reactPlugin from 'eslint-plugin-react';
-import reactHooksPlugin from 'eslint-plugin-react-hooks';
+import { configs as reactHooksPluginConfigs } from 'eslint-plugin-react-hooks';
 import baseConfig from '.';
 
 const recommendedConfig = reactPlugin.configs.flat['recommended'];
@@ -13,7 +13,7 @@ const config = defineConfig(
   baseConfig,
   recommendedConfig,
   jsxRuntimeConfig,
-  reactHooksPlugin.configs['recommended-latest'],
+  reactHooksPluginConfigs['recommended-latest'],
   // TODO: XSS plugin
   {
     rules: {

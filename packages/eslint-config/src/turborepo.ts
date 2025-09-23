@@ -1,8 +1,8 @@
 import { defineConfig } from 'eslint/config';
-import turboPlugin from 'eslint-plugin-turbo';
+import { configs as turboPluginConfigs } from 'eslint-plugin-turbo';
 import { importNoExtraneousDependenciesConfig } from '.';
 
-const config = defineConfig(turboPlugin.configs['flat/recommended'], {
+const config = defineConfig(turboPluginConfigs['flat/recommended'], {
   rules: {
     'turbo/no-undeclared-env-vars': ['error', { allowList: ['CI', 'TZ'] }],
     'import/no-extraneous-dependencies': [

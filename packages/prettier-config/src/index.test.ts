@@ -36,7 +36,7 @@ describe('Prettier Configuration', () => {
 
   test('Should have tailwindcss plugin as last plugin', () => {
     const plugins = config.plugins as string[];
-    const lastPlugin = plugins[plugins.length - 1];
+    const lastPlugin = plugins.at(-1);
     expect(lastPlugin).toBe('prettier-plugin-tailwindcss');
   });
 });

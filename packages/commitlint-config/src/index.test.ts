@@ -32,7 +32,7 @@ describe('Commitlint Configuration', () => {
     });
   });
 
-  test('Should load commitlint config without errors', async () => {
+  test('Should load commitlint config without errors', () => {
     expect(commitlintConfig).toBeDefined();
     expect(commitlintConfig).toHaveProperty('extends');
     expect(commitlintConfig.extends).toBeDefined();
