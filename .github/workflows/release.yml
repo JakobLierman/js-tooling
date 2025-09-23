@@ -14,6 +14,8 @@ on:
           - production
           - beta
 
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
 env:
   DO_NOT_TRACK: ${{ vars.DO_NOT_TRACK }}
   TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
@@ -42,7 +44,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ github.token }}
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -54,7 +56,7 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           cache: 'pnpm'
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ github.token }}
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -62,8 +64,23 @@ jobs:
       - name: Build packages
         run: pnpm build
 
-      - name: Generate automated changesets
-        run: pnpm changeset:auto
+      - name: Check for changeset files
+        id: changeset-check
+        run: |
+          if [ -n "$(find .changeset -name "*.md" -type f)" ]; then
+            echo "has-changesets=true" >> $GITHUB_OUTPUT
+            echo "Found changeset files"
+          else
+            echo "has-changesets=false" >> $GITHUB_OUTPUT
+            echo "No changeset files found"
+          fi
+
+      - name: Skip release when no changesets
+        if: steps.changeset-check.outputs.has-changesets == 'false'
+        run: |
+          echo "⚠️  No changeset files found. Skipping release process."
+          echo "To create a release, run 'pnpm changeset:auto' locally and commit the changes."
+          exit 0
 
       - name: Determine release type
         id: release-type
@@ -79,41 +96,46 @@ jobs:
           fi
           echo "Release type determined: ${{ steps.release-type.outputs.type }}"
 
-      - name: Handle Production Release
-        if: steps.release-type.outputs.type == 'production'
+      - name: Create Release PR
+        if: steps.changeset-check.outputs.has-changesets == 'true'
         uses: changesets/action@v1
         with:
-          publish: pnpm changeset publish
-          version: pnpm changeset version
-          commit: 'chore: release packages'
-          title: 'chore: release packages'
-          commitMode: 'github-api'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Handle Snapshot Release
-        if: steps.release-type.outputs.type != 'production'
-        uses: changesets/action@v1
-        with:
-          publish: pnpm changeset publish --tag ${{ steps.release-type.outputs.type }}
-          version: pnpm changeset version --snapshot ${{ steps.release-type.outputs.type }}
+          version: pnpm changeset version ${{ steps.release-type.outputs.type != 'production' && format('--snapshot {0}', steps.release-type.outputs.type) || '' }}
           commit: 'chore: release ${{ steps.release-type.outputs.type }} packages'
           title: 'chore: release ${{ steps.release-type.outputs.type }} packages'
-          commitMode: 'github-api'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Merge Release PR
+        if: steps.changeset-check.outputs.has-changesets == 'true'
+        run: |
+          PR_NUMBER=$(gh pr list --head "changeset-release/main" --json number --jq '.[0].number')
+          if [ "$PR_NUMBER" != "null" ] && [ "$PR_NUMBER" != "" ]; then
+            echo "Squash merging PR #$PR_NUMBER"
+            gh pr merge $PR_NUMBER --squash --delete-branch
+          else
+            echo "No release PR found"
+            exit 1
+          fi
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Publish Packages
+        if: steps.changeset-check.outputs.has-changesets == 'true'
+        run: pnpm changeset publish ${{ steps.release-type.outputs.type != 'production' && format('--tag {0}', steps.release-type.outputs.type) || '' }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          NPM_TOKEN: ${{ github.token }}
+          NODE_AUTH_TOKEN: ${{ github.token }}
 
       - name: Create Git Tags
+        if: steps.changeset-check.outputs.has-changesets == 'true'
         run: |
-          # Create tags only for packages that were actually updated
           for package in packages/*/; do
             if [ -f "$package/package.json" ]; then
               package_name=$(cat "$package/package.json" | jq -r '.name')
               new_version=$(cat "$package/package.json" | jq -r '.version')
               
-              # Check if this package was actually updated by looking for changes in package.json
               if git diff --quiet HEAD~1 HEAD -- "$package/package.json"; then
                 echo "No changes detected for $package_name, skipping tag"
               else
