@@ -1,5 +1,11 @@
 # @jakoblierman/eslint-config
 
+## 1.0.1
+
+### Patch Changes
+
+- [`a710fa9`](https://github.com/JakobLierman/js-tooling/commit/a710fa9481fa7b33631caf8e51c782a0fac01e33) Thanks [@JakobLierman](https://github.com/JakobLierman)! - - fix: nextjs linting
+
 ## 1.0.0
 
 ### Major Changes
