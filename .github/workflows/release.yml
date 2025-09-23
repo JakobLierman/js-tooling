@@ -140,32 +140,3 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           NPM_TOKEN: ${{ github.token }}
           NODE_AUTH_TOKEN: ${{ github.token }}
-
-      - name: Create Git Tags
-        if: steps.changeset-check.outputs.has-changesets == 'true'
-        run: |
-          echo "🏷️  Creating git tags for updated packages..."
-          tags_created=0
-
-          for package in packages/*/; do
-            if [ -f "$package/package.json" ]; then
-              package_name=$(jq -r '.name' "$package/package.json")
-              new_version=$(jq -r '.version' "$package/package.json")
-              
-              if git diff --quiet HEAD~1 HEAD -- "$package/package.json"; then
-                echo "⏭️  No changes detected for $package_name, skipping tag"
-              else
-                echo "🏷️  Creating git tag for $package_name@$new_version"
-                git tag "$package_name@$new_version"
-                tags_created=$((tags_created + 1))
-              fi
-            fi
-          done
-
-          if [ $tags_created -gt 0 ]; then
-            echo "📤 Pushing $tags_created git tags..."
-            git push --tags
-            echo "✅ Successfully pushed $tags_created tags"
-          else
-            echo "ℹ️  No tags to push"
-          fi
