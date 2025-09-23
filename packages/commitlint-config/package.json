@@ -26,7 +26,6 @@
     "build": "tsup",
     "clean": "rm -rf dist .turbo",
     "dev": "tsup --watch",
-    "lint": "eslint",
     "test": "vitest"
   },
   "dependencies": {
@@ -36,10 +35,8 @@
     "@commitlint/lint": "^19.8.1",
     "@commitlint/load": "^19.8.1",
     "@commitlint/types": "^19.8.1",
-    "@jakoblierman/eslint-config": "~0.14.3",
     "@jakoblierman/tsconfig": "workspace:*",
     "@types/node": "^22.10.2",
-    "eslint": "^8.57.0",
     "tsup": "^8.5.0",
     "typescript": "^5.9.2",
     "vite-tsconfig-paths": "^5.1.4",

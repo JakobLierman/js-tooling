@@ -11,16 +11,22 @@ import stylisticPlugin from '@stylistic/eslint-plugin';
 import prettierPluginRecommended from 'eslint-plugin-prettier/recommended';
 import commentsPlugin from '@eslint-community/eslint-plugin-eslint-comments/configs';
 
-export const typescriptFiles = ['*.ts', '*.tsx', '*.cts', '*.mts'];
-export const testFiles = ['*.test.*', '*.spec.*', 'test/**', 'tests/**'];
+export const typescriptFiles = ['**/*.ts', '**/*.tsx', '**/*.cts', '**/*.mts'];
+export const testFiles = [
+  '**/*.test.*',
+  '**/*.spec.*',
+  '**/test/**',
+  '**/tests/**',
+];
 
 export const importNoExtraneousDependenciesConfig = {
   devDependencies: [
     '**/test/*',
     '**/tests/*',
+    '**/spec/*',
     '**/scripts/*',
     '**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}',
-    '*.config.{js,mjs,cjs,ts,mts,cts}',
+    '**/*.config.{js,mjs,cjs,ts,mts,cts}',
     '*tailwind*.{js,mjs,cjs,ts,mts,cts}',
   ],
 };
@@ -37,6 +43,7 @@ const config = defineConfig(
       'tmp/',
     ].flatMap((dir) => [dir, `**/${dir}`]),
   ),
+  { files: ['**/*.{js,jsx,ts,tsx,mjs,cjs}'] },
   eslint.configs.recommended,
   nodePlugin.configs['flat/recommended'],
   importPlugin.flatConfigs.recommended,

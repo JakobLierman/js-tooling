@@ -142,11 +142,11 @@ The project includes comprehensive quality checks:
 
 ## Configuration Files
 
-- `commitlint.config.cjs` - Commit message linting
-- `prettier.config.mjs` - Code formatting
-- `lint-staged.config.js` - Pre-commit hooks
+- `commitlint.config.ts` - Commit message linting
+- `prettier.config.js` - Code formatting
+- `lint-staged.config.ts` - Pre-commit hooks
 - `turbo.json` - Build orchestration
-- `vitest.config.mts` - Testing configuration
+- `vitest.config.ts` - Testing configuration
 
 ## Contributing
 

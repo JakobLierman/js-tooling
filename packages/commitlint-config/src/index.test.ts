@@ -1,7 +1,11 @@
 import { beforeAll, describe, expect, test } from 'vitest';
 import load from '@commitlint/load';
 import lint from '@commitlint/lint';
-import { type QualifiedConfig, type LintOutcome } from '@commitlint/types';
+import {
+  type QualifiedConfig,
+  type LintOutcome,
+  type LintOptions,
+} from '@commitlint/types';
 import config from './index';
 
 describe('Commitlint Configuration', () => {
@@ -18,7 +22,7 @@ describe('Commitlint Configuration', () => {
   const lintWithConfig = (message: string): Promise<LintOutcome> => {
     return lint(message, commitlintConfig.rules, {
       parserOpts: commitlintConfig.parserPreset?.parserOpts,
-    });
+    } as LintOptions);
   };
 
   beforeAll(async () => {

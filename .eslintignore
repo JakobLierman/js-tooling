@@ -1,7 +1,0 @@
-# Ignore all separate packages since they have their own ESLint configurations
-apps/
-functions/
-packages/
-libs/
-tools/
-examples/

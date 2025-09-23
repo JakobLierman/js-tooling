@@ -25,7 +25,6 @@
     "build": "tsup",
     "clean": "rm -rf dist .turbo",
     "dev": "tsup --watch",
-    "lint": "eslint",
     "test": "vitest"
   },
   "dependencies": {
@@ -38,9 +37,7 @@
     "prettier-plugin-tailwindcss": "~0.6.14"
   },
   "devDependencies": {
-    "@jakoblierman/eslint-config": "~0.14.3",
     "@jakoblierman/tsconfig": "workspace:*",
-    "eslint": "^8.57.0",
     "tsup": "^8.5.0",
     "typescript": "^5.9.2",
     "vite-tsconfig-paths": "^5.1.4",

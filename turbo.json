@@ -10,11 +10,12 @@
         "$TURBO_DEFAULT$",
         "!README.md",
         "!scripts/**",
-        "!.eslintrc.json",
-        "!.lintstagedrc.json",
+        "!eslint.config.ts",
+        "!prettier.config.js",
+        "!commitlint.config.ts",
+        "!lint-staged.config.ts",
         "!.npm-upgrade.json",
         "!.prettierignore",
-        "!.prettierrc",
         "!vitest.config.ts",
         "!**/*.test.ts",
         "!**/*.test.tsx",
@@ -38,11 +39,12 @@
         "$TURBO_DEFAULT$",
         "!README.md",
         "!scripts/**",
-        "!.eslintrc.json",
-        "!.lintstagedrc.json",
+        "!eslint.config.ts",
+        "!prettier.config.js",
+        "!commitlint.config.ts",
+        "!lint-staged.config.ts",
         "!.npm-upgrade.json",
-        "!.prettierignore",
-        "!.prettierrc"
+        "!.prettierignore"
       ]
     },
     "//#test:root": {
@@ -50,19 +52,15 @@
         "$TURBO_DEFAULT$",
         "!README.md",
         "!scripts/**",
-        "!.eslintrc.json",
-        "!.lintstagedrc.json",
+        "!eslint.config.ts",
+        "!prettier.config.js",
+        "!commitlint.config.ts",
+        "!lint-staged.config.ts",
         "!.npm-upgrade.json",
-        "!.prettierignore",
-        "!.prettierrc"
+        "!.prettierignore"
       ],
       "outputs": ["coverage/**"]
     },
-    "lint": {
-      "dependsOn": ["//#lint:root", "^build"],
-      "inputs": ["$TURBO_DEFAULT$", "!.lintstagedrc.json", "!.npm-upgrade.json"]
-    },
-    "//#lint:root": {},
     "clean": {
       "cache": false
     }

@@ -1,10 +1,10 @@
-// @ts-check
+import { type Configuration } from 'lint-staged';
+
 /**
  * Lint-staged configuration.
  * @see https://github.com/lint-staged/lint-staged
- * @type {import('lint-staged').Configuration}
  */
-export default {
+const config: Configuration = {
   '*': ['prettier --write --ignore-unknown'], // Format all files
   'package.json': () => [
     'syncpack format', // Format package.json
@@ -15,3 +15,5 @@ export default {
     'eslint --cache --cache-file node_modules/.cache/.eslintcache --fix', // Lint and fix JavaScript and TypeScript files
   ],
 };
+
+export default config;
