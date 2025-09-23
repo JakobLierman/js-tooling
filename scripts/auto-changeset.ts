@@ -250,11 +250,12 @@ const parseCommitMessage = (commitMessage: string): VersionBump => {
   const message = commitMessage.replace(/^[a-f0-9]+ /, '');
 
   // Check for breaking changes
-  if (
-    message.includes('BREAKING CHANGE') ||
-    message.startsWith('feat!') ||
-    message.startsWith('fix!')
-  ) {
+  if (message.includes('BREAKING CHANGE')) {
+    return 'major';
+  }
+
+  // Check for exclamation mark syntax (any type can have breaking changes)
+  if (message.match(/^(\w+)(\(.+\))?!:/)) {
     return 'major';
   }
 
