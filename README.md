@@ -101,31 +101,50 @@ This monorepo uses pnpm workspaces with the following structure:
 
 ## Release Process
 
-This monorepo uses an automated release workflow with Changesets:
+This monorepo uses an automated release workflow with Changesets and GitHub Actions.
+
+### How Releases Work
+
+1. **Make changes** to packages in your code
+2. **Generate changesets** automatically: `pnpm changeset:auto`
+3. **Commit and push** the changeset files
+4. **GitHub Actions** automatically processes the release
 
 ### Release Types
 
 - **Production** (`main` branch): Stable releases to `latest` tag
 - **Beta** (`staging` branch): Pre-release versions to `beta` tag
-- **Alpha** (`develop` branch): Development versions to `alpha` tag
 
-### Adding Changes
+### Creating a Release
 
-When making changes to a package, add a changeset:
+1. **Make your changes** to the packages
+2. **Generate changesets**:
+   ```bash
+   pnpm changeset:auto
+   ```
+3. **Commit the changeset files**:
+   ```bash
+   git add .changeset/
+   git commit -m "chore: add changesets"
+   git push
+   ```
+4. **GitHub Actions** will automatically:
+   - Update package versions
+   - Generate changelogs
+   - Publish to npm
+   - Create git tags
 
-```bash
-pnpm changeset
-```
+### What Happens During Release
 
-This will guide you through:
+- **Version updates**: Package.json versions are bumped based on changeset types
+- **Changelog generation**: GitHub-linked changelogs are created for each package
+- **Package publishing**: Packages are published to npm with appropriate tags
+- **Git tags**: Version tags are created for each released package
+- **Cleanup**: Changeset files are automatically removed after processing
 
-1. Selecting which packages changed
-2. Choosing the change type (patch, minor, major)
-3. Writing a description of the change
+### Manual Release (Alternative)
 
-### Manual Release
-
-You can trigger releases manually via GitHub Actions or locally:
+You can also trigger releases manually via GitHub Actions workflow dispatch or run locally:
 
 ```bash
 # Version packages (updates package.json versions)
@@ -134,8 +153,6 @@ pnpm changeset version
 # Publish packages to registry
 pnpm changeset publish
 ```
-
-For detailed release information, see [RELEASE.md](./RELEASE.md).
 
 ## Quality Assurance
 
