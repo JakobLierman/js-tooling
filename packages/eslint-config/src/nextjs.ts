@@ -9,6 +9,7 @@ const config = defineConfig(
   compat.config({
     extends: ['next/core-web-vitals', 'next/typescript'],
   }),
+  { ignores: ['.next/**', 'next-env.d.ts'] },
 );
 
 export default config;
