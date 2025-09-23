@@ -36,7 +36,7 @@
     "@commitlint/load": "^19.8.1",
     "@commitlint/types": "^19.8.1",
     "@jakoblierman/tsconfig": "workspace:*",
-    "@types/node": "^22.10.2",
+    "@types/node": "^22",
     "tsup": "^8.5.0",
     "typescript": "^5.9.2",
     "vite-tsconfig-paths": "^5.1.4",
