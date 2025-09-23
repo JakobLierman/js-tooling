@@ -2,7 +2,7 @@ import { defineConfig } from 'tsup';
 
 export default defineConfig((options) => ({
   entry: ['src/index.ts'],
-  format: ['esm'],
+  format: ['cjs', 'esm'],
   dts: true,
   sourcemap: process.env['NODE_ENV'] === 'production' || 'inline',
   minify: !options.watch,
