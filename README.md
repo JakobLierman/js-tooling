@@ -106,8 +106,8 @@ This monorepo uses an automated release workflow with Changesets and GitHub Acti
 ### How Releases Work
 
 1. **Make changes** to packages in your code
-2. **Generate changesets** automatically: `pnpm changeset:auto`
-3. **Commit and push** the changeset files
+2. **Create changesets** manually: `pnpm changeset`
+3. **Commit and push** the changeset files (commit happens automatically)
 4. **GitHub Actions** automatically processes the release
 
 ### Release Types
@@ -118,16 +118,11 @@ This monorepo uses an automated release workflow with Changesets and GitHub Acti
 ### Creating a Release
 
 1. **Make your changes** to the packages
-2. **Generate changesets**:
+2. **Create changesets**:
    ```bash
-   pnpm changeset:auto
+   pnpm changeset
    ```
-3. **Commit the changeset files**:
-   ```bash
-   git add .changeset/
-   git commit -m "chore: add changesets"
-   git push
-   ```
+3. **Push the changeset files**:
 4. **GitHub Actions** will automatically:
    - Update package versions
    - Generate changelogs
@@ -142,6 +137,18 @@ This monorepo uses an automated release workflow with Changesets and GitHub Acti
 - **Git tags**: Version tags are created for each released package
 - **Cleanup**: Changeset files are automatically removed after processing
 
+### Test Protection
+
+All releases are protected by comprehensive testing:
+
+- **Linting**: Code style and quality checks
+- **Type Checking**: TypeScript type validation
+- **Unit Tests**: All test suites must pass
+- **Security Audit**: Dependency vulnerability scanning
+- **Build Verification**: Ensures all packages build successfully
+
+If any test fails, the release workflow will not run, ensuring only quality code is released.
+
 ### Manual Release (Alternative)
 
 You can also trigger releases manually via GitHub Actions workflow dispatch or run locally:
@@ -153,6 +160,22 @@ pnpm changeset version
 # Publish packages to registry
 pnpm changeset publish
 ```
+
+### Troubleshooting
+
+If a release fails:
+
+1. Check the GitHub Actions logs for specific error messages
+2. Ensure all packages build and test successfully
+3. Verify GitHub Packages access permissions
+4. Check that commit messages follow conventional commit format
+
+### Branch Strategy
+
+- `staging` → Beta releases
+- `main` → Production releases
+
+This allows for a proper release pipeline where features flow through beta → production stages.
 
 ## Quality Assurance
 

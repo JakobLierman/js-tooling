@@ -17,7 +17,6 @@
   "scripts": {
     "build": "turbo run build",
     "changeset": "changeset",
-    "changeset:auto": "tsx scripts/auto-changeset.ts",
     "clean": "rm -rf .turbo coverage && turbo run clean",
     "dev": "turbo run dev",
     "format": "pnpm build --filter=@jakoblierman/prettier-config... && prettier --write --ignore-unknown .",
