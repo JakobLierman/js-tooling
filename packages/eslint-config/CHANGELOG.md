@@ -1,5 +1,11 @@
 # @jakoblierman/eslint-config
 
+## 1.0.2
+
+### Patch Changes
+
+- [`850151e`](https://github.com/JakobLierman/js-tooling/commit/850151e2a7a3296d6cdc2fb2851153e369bb3a8f) Thanks [@JakobLierman](https://github.com/JakobLierman)! - - fix: prettier eslint config installation
+
 ## 1.0.1
 
 ### Patch Changes
