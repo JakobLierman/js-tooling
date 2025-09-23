@@ -12,6 +12,14 @@ This monorepo provides a collection of reusable JavaScript/TypeScript configurat
 
 A commitlint configuration package that enforces conventional commit messages.
 
+### [@jakoblierman/eslint-config](./packages/eslint-config/README.md)
+
+An opinionated ESLint configuration package.
+
+### [@jakoblierman/prettier-config](./packages/prettier-config/README.md)
+
+An opinionated Prettier configuration package.
+
 ### [@jakoblierman/tsconfig](./packages/tsconfig/README.md)
 
 A TypeScript configuration package that provides a base configuration for TypeScript projects.
