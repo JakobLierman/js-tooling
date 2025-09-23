@@ -106,8 +106,8 @@ const getAllPackages = (): PackageInfo[] => {
 // Use git to detect changed packages
 const getChangedPackagesFromGit = (): string[] => {
   try {
-    // Get changed files since last commit
-    const changedFiles = execSync('git diff --name-only HEAD~1 HEAD', {
+    // Get changed files (staged and unstaged)
+    const changedFiles = execSync('git diff --name-only --cached HEAD', {
       cwd: rootDir,
       encoding: 'utf8',
     })
@@ -171,17 +171,15 @@ const getChangedPackagesFromTurbo = (): string[] => {
   }
 };
 
-// Get commits that affect specific packages
-const getCommitsForPackage = (
-  packageName: string,
-  packagePath: string,
-): string[] => {
+// Get commits since the last version bump for a specific package
+const getCommitsSinceLastVersionBump = (packagePath: string): string[] => {
   try {
     const packageDir = packagePath.split('/').pop();
     if (!packageDir) return [];
 
+    // Get commits that modified this specific package's package.json
     const commits = execSync(
-      `git log --oneline --follow -- packages/${packageDir}`,
+      `git log --oneline --follow -- packages/${packageDir}/package.json`,
       {
         cwd: rootDir,
         encoding: 'utf8',
@@ -191,60 +189,59 @@ const getCommitsForPackage = (
       .split('\n')
       .filter(Boolean);
 
-    return commits;
-  } catch (error) {
-    console.warn(
-      `Could not get commits for package ${packageName}:`,
-      (error as Error).message,
-    );
+    let lastVersionBumpCommit = '';
 
-    return [];
-  }
-};
+    // Find the most recent version bump commit
+    for (const commit of commits) {
+      const commitHash = commit.split(' ')[0];
+      if (!commitHash) continue;
 
-// Get commits since last release
-const getCommitsSinceLastRelease = (): string[] => {
-  try {
-    // Get the last tag
-    const lastTag = execSync('git describe --tags --abbrev=0', {
-      cwd: rootDir,
-      encoding: 'utf8',
-    }).trim();
+      try {
+        // Get the diff for this commit to see if version was changed
+        const diff = execSync(
+          `git show ${commitHash} -- packages/${packageDir}/package.json`,
+          { cwd: rootDir, encoding: 'utf8' },
+        );
 
-    // Get commits since last tag
-    const commits = execSync(`git log ${lastTag}..HEAD --oneline`, {
-      cwd: rootDir,
-      encoding: 'utf8',
-    })
+        // Check if the diff contains version changes
+        if (
+          diff.includes('"version"') &&
+          (diff.includes('+') || diff.includes('-'))
+        ) {
+          lastVersionBumpCommit = commitHash;
+          break;
+        }
+      } catch {
+        // Skip commits where we can't get the diff
+        continue;
+      }
+    }
+
+    // If no version bump found, return all commits for this package
+    if (!lastVersionBumpCommit) {
+      return commits;
+    }
+
+    // Get commits since the last version bump
+    const commitsSinceLastBump = execSync(
+      `git log --oneline ${lastVersionBumpCommit}..HEAD -- packages/${packageDir}`,
+      {
+        cwd: rootDir,
+        encoding: 'utf8',
+      },
+    )
       .trim()
       .split('\n')
       .filter(Boolean);
 
-    return commits;
+    return commitsSinceLastBump;
   } catch (error) {
     console.warn(
-      'Could not get commits since last release:',
+      `Could not get commits since last version bump for package:`,
       (error as Error).message,
     );
-    // Fallback to last 10 commits
-    try {
-      const commits = execSync('git log -10 --oneline', {
-        cwd: rootDir,
-        encoding: 'utf8',
-      })
-        .trim()
-        .split('\n')
-        .filter(Boolean);
 
-      return commits;
-    } catch (fallbackError) {
-      console.error(
-        'Could not get any commits:',
-        (fallbackError as Error).message,
-      );
-
-      return [];
-    }
+    return [];
   }
 };
 
@@ -343,34 +340,21 @@ const main = (): Promise<void> | void => {
     return;
   }
 
-  // Try to get changed packages from both git and turbo
+  // Try to get changed packages from git first
   const gitChangedPackages = getChangedPackagesFromGit();
-  const turboChangedPackages = getChangedPackagesFromTurbo();
-
   console.log('Changed packages from git:', gitChangedPackages);
-  console.log('Changed packages from Turborepo:', turboChangedPackages);
 
-  // Combine both methods to get a comprehensive list
-  const allChangedPackages = new Set([
-    ...gitChangedPackages,
-    ...turboChangedPackages,
-  ]);
-  const changedPackageNames = [...allChangedPackages];
+  // Use git changes as primary source, fallback to turbo if no git changes
+  let changedPackageNames = gitChangedPackages;
+
+  if (gitChangedPackages.length === 0) {
+    const turboChangedPackages = getChangedPackagesFromTurbo();
+    console.log('No git changes, using Turborepo:', turboChangedPackages);
+    changedPackageNames = turboChangedPackages;
+  }
 
   if (changedPackageNames.length === 0) {
     console.log('No packages changed, skipping changeset generation');
-
-    return;
-  }
-
-  // Get commits since last release
-  const allCommits = getCommitsSinceLastRelease();
-  console.log(
-    `Found ${allCommits.length.toString()} commits since last release`,
-  );
-
-  if (allCommits.length === 0) {
-    console.log('No commits found, skipping changeset generation');
 
     return;
   }
@@ -382,15 +366,21 @@ const main = (): Promise<void> | void => {
     if (changedPackageNames.includes(packageInfo.name)) {
       console.log(`Processing changed package: ${packageInfo.name}`);
 
-      // Get commits specific to this package
-      const packageCommits = getCommitsForPackage(
-        packageInfo.name,
+      // Get commits since the last version bump for this specific package
+      const commitsSinceLastBump = getCommitsSinceLastVersionBump(
         packageInfo.path,
       );
 
-      // If no package-specific commits, use all commits
-      const relevantCommits =
-        packageCommits.length > 0 ? packageCommits : allCommits;
+      // Only create changeset if there are commits since the last version bump
+      if (commitsSinceLastBump.length === 0) {
+        console.log(
+          `No commits since last version bump found for ${packageInfo.name}, skipping`,
+        );
+        continue;
+      }
+
+      // Use commits since last version bump
+      const relevantCommits = commitsSinceLastBump;
 
       // Determine version bump for this package
       const versionBump = getHighestVersionBump(relevantCommits);
