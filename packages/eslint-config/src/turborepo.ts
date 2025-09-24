@@ -1,6 +1,6 @@
 import { defineConfig } from 'eslint/config';
 import { configs as turboPluginConfigs } from 'eslint-plugin-turbo';
-import { importNoExtraneousDependenciesConfig } from '.';
+import { importNoExtraneousDependenciesConfig } from './import-no-extraneous-dependencies';
 
 const config = defineConfig(turboPluginConfigs['flat/recommended'], {
   rules: {

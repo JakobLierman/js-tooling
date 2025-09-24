@@ -9,7 +9,9 @@ import unicornPlugin from 'eslint-plugin-unicorn';
 import unusedImportsPlugin from 'eslint-plugin-unused-imports';
 import stylisticPlugin from '@stylistic/eslint-plugin';
 import prettierPluginRecommended from 'eslint-plugin-prettier/recommended';
-import commentsPlugin from '@eslint-community/eslint-plugin-eslint-comments/configs';
+import eslintCommentsPlugin from '@eslint-community/eslint-plugin-eslint-comments';
+import eslintCommentsPluginConfigs from '@eslint-community/eslint-plugin-eslint-comments/configs';
+import { importNoExtraneousDependenciesConfig } from './import-no-extraneous-dependencies';
 
 export const typescriptFiles = ['**/*.ts', '**/*.tsx', '**/*.cts', '**/*.mts'];
 export const testFiles = [
@@ -18,18 +20,6 @@ export const testFiles = [
   '**/test/**',
   '**/tests/**',
 ];
-
-export const importNoExtraneousDependenciesConfig = {
-  devDependencies: [
-    '**/test/*',
-    '**/tests/*',
-    '**/spec/*',
-    '**/scripts/*',
-    '**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}',
-    '**/*.config.{js,mjs,cjs,ts,mts,cts}',
-    '*tailwind*.{js,mjs,cjs,ts,mts,cts}',
-  ],
-};
 
 const config = defineConfig(
   globalIgnores(
@@ -51,11 +41,11 @@ const config = defineConfig(
   jsdocPlugin.configs['flat/recommended'],
   unicornPlugin.configs.recommended,
   stylisticPlugin.configs.recommended,
-  commentsPlugin.recommended,
   {
     plugins: {
       'unused-imports': unusedImportsPlugin,
       stylistic: stylisticPlugin,
+      '@eslint-community/eslint-comments': eslintCommentsPlugin,
     },
     languageOptions: {
       ecmaVersion: 'latest',
@@ -131,6 +121,8 @@ const config = defineConfig(
         'error',
         { blankLine: 'always', prev: '*', next: 'return' },
       ],
+      // @eslint-community/eslint-plugin-eslint-comments
+      ...eslintCommentsPluginConfigs.recommended.rules,
     },
   },
   {
