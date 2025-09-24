@@ -1,5 +1,11 @@
 # @jakoblierman/eslint-config
 
+## 1.0.3
+
+### Patch Changes
+
+- [`915e8f9`](https://github.com/JakobLierman/js-tooling/commit/915e8f9d4e9133ab02d7e9f2e8d0c33b7ebee089) Thanks [@JakobLierman](https://github.com/JakobLierman)! - fix: eslint comments plugin
+
 ## 1.0.2
 
 ### Patch Changes
