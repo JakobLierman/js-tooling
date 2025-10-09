@@ -1,6 +1,6 @@
 import { defineConfig } from 'eslint/config';
 import reactPlugin from 'eslint-plugin-react';
-import { configs as reactHooksPluginConfigs } from 'eslint-plugin-react-hooks';
+import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import baseConfig from '.';
 
 const recommendedConfig = reactPlugin.configs.flat['recommended'];
@@ -9,12 +9,16 @@ if (!recommendedConfig) throw new Error('Recommended config not found');
 const jsxRuntimeConfig = reactPlugin.configs.flat['jsx-runtime'];
 if (!jsxRuntimeConfig) throw new Error('JSX runtime config not found');
 
+const hooksConfig = reactHooksPlugin.configs.flat['recommended-latest'];
+if (!hooksConfig) throw new Error('Hooks recommended latest config not found');
+
 const config = defineConfig(
   baseConfig,
   recommendedConfig,
   jsxRuntimeConfig,
-  reactHooksPluginConfigs['recommended-latest'],
+  hooksConfig,
   // TODO: XSS plugin
+  // TODO: a11y plugin
   {
     settings: {
       react: { version: 'detect' },
