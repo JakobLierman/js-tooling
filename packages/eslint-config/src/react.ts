@@ -1,4 +1,5 @@
 import { defineConfig } from 'eslint/config';
+import { type ConfigObject } from '@eslint/core';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import baseConfig from '.';
@@ -12,7 +13,7 @@ if (!jsxRuntimeConfig) throw new Error('JSX runtime config not found');
 const hooksConfig = reactHooksPlugin.configs.flat['recommended-latest'];
 if (!hooksConfig) throw new Error('Hooks recommended latest config not found');
 
-const config = defineConfig(
+const config: ConfigObject[] = defineConfig(
   baseConfig,
   recommendedConfig,
   jsxRuntimeConfig,
@@ -24,6 +25,7 @@ const config = defineConfig(
       react: { version: 'detect' },
     },
     rules: {
+      'react/prop-types': 'off', // Does not work well with TypeScript
       'react/function-component-definition': [
         'error',
         {

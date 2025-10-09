@@ -1,9 +1,10 @@
 import { type ESLint } from 'eslint';
 import { defineConfig } from 'eslint/config';
+import { type ConfigObject } from '@eslint/core';
 import vitestPlugin from '@vitest/eslint-plugin';
 import { testFiles } from '.';
 
-const config = defineConfig({
+const config: ConfigObject[] = defineConfig({
   files: testFiles,
   plugins: { vitest: vitestPlugin as unknown as ESLint.Plugin },
   rules: vitestPlugin.configs.recommended.rules,

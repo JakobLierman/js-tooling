@@ -1,8 +1,9 @@
 import { defineConfig } from 'eslint/config';
+import { type ConfigObject } from '@eslint/core';
 import nextPlugin from '@next/eslint-plugin-next';
 import reactConfig from './react';
 
-const config = defineConfig(
+const config: ConfigObject[] = defineConfig(
   reactConfig,
   {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- Incompatible Nextjs plugin, but it works...

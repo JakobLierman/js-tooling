@@ -1,4 +1,5 @@
 import { defineConfig, globalIgnores } from 'eslint/config';
+import { type ConfigObject } from '@eslint/core';
 import eslint from '@eslint/js';
 import { configs as tseslintConfigs, parser } from 'typescript-eslint';
 import nodePlugin from 'eslint-plugin-n';
@@ -21,7 +22,7 @@ export const testFiles = [
   '**/tests/**',
 ];
 
-const config = defineConfig(
+const config: ConfigObject[] = defineConfig(
   globalIgnores(
     [
       'node_modules/',
@@ -156,6 +157,11 @@ const config = defineConfig(
       '@typescript-eslint/no-misused-promises': [
         'error',
         { checksVoidReturn: { attributes: false } },
+      ],
+      '@typescript-eslint/no-unnecessary-type-parameters': 'off', // https://typescript-eslint.io/rules/no-unnecessary-type-parameters/#when-not-to-use-it
+      '@typescript-eslint/return-await': [
+        'error',
+        'error-handling-correctness-only',
       ],
       // eslint-plugin-unused-imports
       '@typescript-eslint/no-unused-vars': 'off',

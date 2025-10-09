@@ -41,6 +41,7 @@ describe('Turborepo ESLint Configuration', () => {
               '**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}',
               '**/*.config.{js,mjs,cjs,ts,mts,cts}',
               '*tailwind*.{js,mjs,cjs,ts,mts,cts}',
+              '**/.storybook/*',
             ],
             packageDir: ['.', '../..'], // Package directories for monorepos
           },
