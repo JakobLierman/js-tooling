@@ -5,7 +5,7 @@
     "eslint",
     "eslint-config"
   ],
-  "version": "1.0.3",
+  "version": "1.1.0",
   "type": "module",
   "engines": {
     "node": ">=22.16.0"
