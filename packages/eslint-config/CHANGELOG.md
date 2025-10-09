@@ -1,5 +1,11 @@
 # @jakoblierman/eslint-config
 
+## 1.1.0
+
+### Minor Changes
+
+- [`4e70114`](https://github.com/JakobLierman/js-tooling/commit/4e70114a9205848cf5fd9ff94ed34714b75fbadd) Thanks [@JakobLierman](https://github.com/JakobLierman)! - Slackened TypeScript linting rules
+
 ## 1.0.3
 
 ### Patch Changes
