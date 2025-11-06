@@ -28,13 +28,15 @@ describe('Vitest ESLint Configuration', () => {
   });
 
   it('should have Vitest settings configured', () => {
-    const vitestConfig = config.find((item) => item.settings?.vitest);
-    expect(vitestConfig?.settings?.vitest).toEqual({ typecheck: true });
+    const vitestConfig = config.find((item) => item.settings?.['vitest']);
+    expect(vitestConfig?.settings?.['vitest']).toEqual({ typecheck: true });
   });
 
   it('should have Vitest globals configured', () => {
-    const vitestConfig = config.find((item) => item.languageOptions?.globals);
-    expect(vitestConfig?.languageOptions?.globals).toBeDefined();
+    const vitestConfig = config.find(
+      (item) => item.languageOptions?.['globals'],
+    );
+    expect(vitestConfig?.languageOptions?.['globals']).toBeDefined();
   });
 
   describe('Vitest-specific rules', () => {
@@ -63,13 +65,15 @@ describe('Vitest ESLint Configuration', () => {
     });
 
     it('should have proper language options', () => {
-      const vitestConfig = config.find((item) => item.languageOptions?.globals);
-      expect(vitestConfig?.languageOptions?.globals).toBeDefined();
+      const vitestConfig = config.find(
+        (item) => item.languageOptions?.['globals'],
+      );
+      expect(vitestConfig?.languageOptions?.['globals']).toBeDefined();
     });
 
     it('should have proper settings', () => {
-      const vitestConfig = config.find((item) => item.settings?.vitest);
-      expect(vitestConfig?.settings?.vitest).toEqual({ typecheck: true });
+      const vitestConfig = config.find((item) => item.settings?.['vitest']);
+      expect(vitestConfig?.settings?.['vitest']).toEqual({ typecheck: true });
     });
   });
 
@@ -111,13 +115,16 @@ describe('Vitest ESLint Configuration', () => {
 
   describe('Environment configuration', () => {
     it('should have Vitest globals available', () => {
-      const vitestConfig = config.find((item) => item.languageOptions?.globals);
-      expect(vitestConfig?.languageOptions?.globals).toBeDefined();
+      const vitestConfig = config.find(
+        (item) => item.languageOptions?.['globals'],
+      );
+      expect(vitestConfig?.languageOptions?.['globals']).toBeDefined();
     });
 
     it('should have typecheck enabled in settings', () => {
-      const vitestConfig = config.find((item) => item.settings?.vitest);
-      expect(vitestConfig?.settings?.vitest?.typecheck).toBe(true);
+      const vitestConfig = config.find((item) => item.settings?.['vitest']);
+      expect(!!vitestConfig?.settings?.['vitest']).toBe(true);
+      expect(vitestConfig?.settings?.['vitest']?.typecheck).toBe(true);
     });
   });
 

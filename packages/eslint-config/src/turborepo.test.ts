@@ -34,11 +34,9 @@ describe('Turborepo ESLint Configuration', () => {
           'error',
           {
             devDependencies: [
-              '**/test/*',
-              '**/tests/*',
-              '**/spec/*',
-              '**/scripts/*',
+              '**/{test,tests,spec}/*',
               '**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}',
+              '**/scripts/*',
               '**/*.config.{js,mjs,cjs,ts,mts,cts}',
               '*tailwind*.{js,mjs,cjs,ts,mts,cts}',
               '**/.storybook/*',
@@ -103,13 +101,14 @@ describe('Turborepo ESLint Configuration', () => {
         turboConfig?.rules?.['import/no-extraneous-dependencies'];
       // @ts-expect-error - ruleConfig is an array
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- should be defined
-      expect(ruleConfig?.[1]?.devDependencies).toContain('**/test/*');
+      expect(ruleConfig?.[1]?.devDependencies).toContain(
+        '**/{test,tests,spec}/*',
+      );
       // @ts-expect-error - ruleConfig is an array
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- should be defined
-      expect(ruleConfig?.[1]?.devDependencies).toContain('**/tests/*');
-      // @ts-expect-error - ruleConfig is an array
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- should be defined
-      expect(ruleConfig?.[1]?.devDependencies).toContain('**/spec/*');
+      expect(ruleConfig?.[1]?.devDependencies).toContain(
+        '**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}',
+      );
     });
 
     it('should have devDependencies patterns for config files', () => {
@@ -122,19 +121,6 @@ describe('Turborepo ESLint Configuration', () => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- should be defined
       expect(ruleConfig?.[1]?.devDependencies).toContain(
         '**/*.config.{js,mjs,cjs,ts,mts,cts}',
-      );
-    });
-
-    it('should have devDependencies patterns for test spec files', () => {
-      const turboConfig = config.find(
-        (item) => item.rules?.['import/no-extraneous-dependencies'],
-      );
-      const ruleConfig =
-        turboConfig?.rules?.['import/no-extraneous-dependencies'];
-      // @ts-expect-error - ruleConfig is an array
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- should be defined
-      expect(ruleConfig?.[1]?.devDependencies).toContain(
-        '**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}',
       );
     });
 
