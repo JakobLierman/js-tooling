@@ -36,7 +36,7 @@ export default {
     {
       label: 'use ~ range for production dependencies',
       range: '~',
-      dependencyTypes: ['prod', 'resolutions', 'overrides', 'pnpmOverrides'],
+      dependencyTypes: ['prod', 'resolutions'],
       dependencies: ['**'],
       packages: ['**'],
     },

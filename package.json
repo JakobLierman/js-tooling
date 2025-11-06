@@ -47,11 +47,14 @@
     "vitest": "^4.0.7",
     "yaml": "^2.8.1"
   },
-  "packageManager": "pnpm@10.19.0",
+  "packageManager": "pnpm@10.20.0",
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild",
       "unrs-resolver"
-    ]
+    ],
+    "overrides": {
+      "vite@>=7.1.0 <=7.1.10": ">=7.1.11"
+    }
   }
 }
