@@ -5,7 +5,7 @@
     "tsconfig",
     "typescript"
   ],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "engines": {
     "node": ">=22.16.0"
