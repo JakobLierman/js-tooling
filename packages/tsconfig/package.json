@@ -25,15 +25,15 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@tsconfig/bun": "~1.0.8",
+    "@tsconfig/bun": "~1.0.9",
     "@tsconfig/next": "~2.0.3",
     "@tsconfig/node-lts": "~22.0.2",
-    "@tsconfig/recommended": "~1.0.10",
-    "@tsconfig/strictest": "~2.0.6"
+    "@tsconfig/recommended": "~1.0.11",
+    "@tsconfig/strictest": "~2.0.7"
   },
   "devDependencies": {
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.2.4"
+    "vitest": "^4.0.7"
   },
   "peerDependencies": {
     "typescript": "^5.9.3"

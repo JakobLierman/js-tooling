@@ -10,14 +10,11 @@ if (!recommendedConfig) throw new Error('Recommended config not found');
 const jsxRuntimeConfig = reactPlugin.configs.flat['jsx-runtime'];
 if (!jsxRuntimeConfig) throw new Error('JSX runtime config not found');
 
-const hooksConfig = reactHooksPlugin.configs.flat['recommended-latest'];
-if (!hooksConfig) throw new Error('Hooks recommended latest config not found');
-
 const config: ConfigObject[] = defineConfig(
   baseConfig,
   recommendedConfig,
   jsxRuntimeConfig,
-  hooksConfig,
+  reactHooksPlugin.configs.flat['recommended-latest'],
   // TODO: XSS plugin
   // TODO: a11y plugin
   {
