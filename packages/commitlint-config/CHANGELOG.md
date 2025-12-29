@@ -1,5 +1,11 @@
 # @jakoblierman/commitlint-config
 
+## 3.0.3
+
+### Patch Changes
+
+- [`244c583`](https://github.com/JakobLierman/js-tooling/commit/244c5833c2359dabc4c6262f7b6452bd1a7cb043) Thanks [@JakobLierman](https://github.com/JakobLierman)! - chore: maintenance and dependency upgrades
+
 ## 3.0.2
 
 ### Patch Changes
