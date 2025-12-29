@@ -8,7 +8,7 @@
   "version": "1.1.1",
   "type": "module",
   "engines": {
-    "node": ">=22.16.0"
+    "node": ">=22.18.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
@@ -49,37 +49,37 @@
   },
   "dependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "~4.5.0",
-    "@eslint/eslintrc": "~3.3.1",
-    "@eslint/js": "~9.39.1",
-    "@next/eslint-plugin-next": "~16.0.1",
-    "@stylistic/eslint-plugin": "~5.5.0",
-    "@vitest/eslint-plugin": "~1.4.1",
+    "@eslint/eslintrc": "~3.3.3",
+    "@eslint/js": "~9.39.2",
+    "@next/eslint-plugin-next": "~16.1.1",
+    "@stylistic/eslint-plugin": "~5.6.1",
+    "@vitest/eslint-plugin": "~1.6.4",
     "eslint-config-prettier": "~10.1.8",
     "eslint-import-resolver-typescript": "~4.4.4",
     "eslint-plugin-import": "~2.32.0",
-    "eslint-plugin-jest": "~29.0.1",
-    "eslint-plugin-jsdoc": "~61.1.12",
+    "eslint-plugin-jest": "~29.11.1",
+    "eslint-plugin-jsdoc": "~61.5.0",
     "eslint-plugin-n": "~17.23.1",
     "eslint-plugin-prettier": "~5.5.4",
     "eslint-plugin-react": "~7.37.5",
     "eslint-plugin-react-hooks": "~7.0.1",
     "eslint-plugin-regexp": "~2.10.0",
-    "eslint-plugin-turbo": "~2.6.0",
+    "eslint-plugin-turbo": "~2.7.2",
     "eslint-plugin-unicorn": "~62.0.0",
     "eslint-plugin-unused-imports": "~4.3.0",
-    "typescript-eslint": "~8.46.3"
+    "typescript-eslint": "~8.50.1"
   },
   "devDependencies": {
     "@jakoblierman/tsconfig": "workspace:*",
     "@types/eslint": "^9.6.1",
     "@types/node": "^24",
-    "eslint": "^9.39.1",
-    "tsup": "^8.5.0",
+    "eslint": "^9.39.2",
+    "tsup": "^8.5.1",
     "typescript": "^5.9.3",
-    "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^4.0.7"
+    "vite-tsconfig-paths": "^6.0.3",
+    "vitest": "^4.0.16"
   },
   "peerDependencies": {
-    "eslint": "^9.39.1"
+    "eslint": "^9.39.2"
   }
 }

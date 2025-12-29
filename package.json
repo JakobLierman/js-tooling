@@ -12,7 +12,7 @@
   "license": "MIT",
   "type": "module",
   "engines": {
-    "node": ">=22.16.0"
+    "node": ">=22.18.0"
   },
   "scripts": {
     "build": "turbo run build",
@@ -27,27 +27,27 @@
     "test:root": "vitest run"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^0.5.1",
-    "@changesets/cli": "^2.29.7",
-    "@commitlint/cli": "^20.1.0",
+    "@changesets/changelog-github": "^0.5.2",
+    "@changesets/cli": "^2.29.8",
+    "@commitlint/cli": "^20.2.0",
     "@jakoblierman/commitlint-config": "workspace:*",
     "@jakoblierman/eslint-config": "workspace:*",
     "@jakoblierman/prettier-config": "workspace:*",
     "@jakoblierman/tsconfig": "workspace:*",
-    "@vitest/coverage-v8": "^4.0.7",
-    "eslint": "^9.39.1",
+    "@vitest/coverage-v8": "^4.0.16",
+    "eslint": "^9.39.2",
     "husky": "^9.1.7",
     "jiti": "^2.6.1",
     "lint-staged": "*",
-    "prettier": "^3.6.2",
+    "prettier": "^3.7.4",
     "syncpack": "^13.0.4",
-    "tsx": "^4.20.6",
-    "turbo": "~2.6.0",
-    "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^4.0.7",
-    "yaml": "^2.8.1"
+    "tsx": "^4.21.0",
+    "turbo": "~2.7.2",
+    "vite-tsconfig-paths": "^6.0.3",
+    "vitest": "^4.0.16",
+    "yaml": "^2.8.2"
   },
-  "packageManager": "pnpm@10.20.0",
+  "packageManager": "pnpm@10.26.2",
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild",

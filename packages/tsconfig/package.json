@@ -8,7 +8,7 @@
   "version": "1.0.1",
   "type": "module",
   "engines": {
-    "node": ">=22.16.0"
+    "node": ">=22.18.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
@@ -25,15 +25,15 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@tsconfig/bun": "~1.0.9",
-    "@tsconfig/next": "~2.0.3",
-    "@tsconfig/node-lts": "~22.0.2",
-    "@tsconfig/recommended": "~1.0.11",
-    "@tsconfig/strictest": "~2.0.7"
+    "@tsconfig/bun": "~1.0.10",
+    "@tsconfig/next": "~2.0.5",
+    "@tsconfig/node-lts": "~24.0.0",
+    "@tsconfig/recommended": "~1.0.13",
+    "@tsconfig/strictest": "~2.0.8"
   },
   "devDependencies": {
-    "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^4.0.7"
+    "vite-tsconfig-paths": "^6.0.3",
+    "vitest": "^4.0.16"
   },
   "peerDependencies": {
     "typescript": "^5.9.3"
