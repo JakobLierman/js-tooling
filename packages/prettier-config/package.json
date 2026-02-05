@@ -5,7 +5,7 @@
     "prettier",
     "prettier-config"
   ],
-  "version": "1.0.3",
+  "version": "1.0.4",
   "engines": {
     "node": ">=22.18.0"
   },

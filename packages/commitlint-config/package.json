@@ -6,7 +6,7 @@
     "commitlint-config",
     "conventional-changelog"
   ],
-  "version": "3.0.3",
+  "version": "3.0.4",
   "engines": {
     "node": ">=22.18.0"
   },
