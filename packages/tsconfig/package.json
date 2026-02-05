@@ -32,8 +32,8 @@
     "@tsconfig/strictest": "~2.0.8"
   },
   "devDependencies": {
-    "vite-tsconfig-paths": "^6.0.3",
-    "vitest": "^4.0.16"
+    "vite-tsconfig-paths": "^6.0.5",
+    "vitest": "^4.0.18"
   },
   "peerDependencies": {
     "typescript": "^5.9.3"

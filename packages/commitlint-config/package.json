@@ -30,20 +30,20 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@commitlint/config-conventional": "~20.2.0",
-    "@commitlint/types": "~20.2.0"
+    "@commitlint/config-conventional": "~20.4.1",
+    "@commitlint/types": "~20.4.0"
   },
   "devDependencies": {
-    "@commitlint/lint": "^20.2.0",
-    "@commitlint/load": "^20.2.0",
+    "@commitlint/lint": "^20.4.1",
+    "@commitlint/load": "^20.4.0",
     "@jakoblierman/tsconfig": "workspace:*",
     "@types/node": "^24",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3",
-    "vite-tsconfig-paths": "^6.0.3",
-    "vitest": "^4.0.16"
+    "vite-tsconfig-paths": "^6.0.5",
+    "vitest": "^4.0.18"
   },
   "peerDependencies": {
-    "@commitlint/cli": "^20.2.0"
+    "@commitlint/cli": "^20.4.1"
   }
 }
