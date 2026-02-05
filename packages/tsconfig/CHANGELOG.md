@@ -1,5 +1,11 @@
 # @jakoblierman/tsconfig
 
+## 2.0.1
+
+### Patch Changes
+
+- [`a484b82`](https://github.com/JakobLierman/js-tooling/commit/a484b8208ae4e99ddc49d0f86d0cdb8e7b2b56ed) Thanks [@JakobLierman](https://github.com/JakobLierman)! - chore: upgrade dependencies
+
 ## 2.0.0
 
 ### Major Changes

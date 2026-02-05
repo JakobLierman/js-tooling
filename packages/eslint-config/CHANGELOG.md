@@ -1,5 +1,11 @@
 # @jakoblierman/eslint-config
 
+## 1.1.3
+
+### Patch Changes
+
+- [`a484b82`](https://github.com/JakobLierman/js-tooling/commit/a484b8208ae4e99ddc49d0f86d0cdb8e7b2b56ed) Thanks [@JakobLierman](https://github.com/JakobLierman)! - chore: upgrade dependencies
+
 ## 1.1.2
 
 ### Patch Changes
