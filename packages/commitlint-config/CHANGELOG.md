@@ -1,5 +1,15 @@
 # @jakoblierman/commitlint-config
 
+## 4.0.0
+
+### Major Changes
+
+- [`a2de386`](https://github.com/JakobLierman/js-tooling/commit/a2de386b72672b7b6a0eb4a1250d012b3089c5a3) Thanks [@JakobLierman](https://github.com/JakobLierman)! - feat: esm only
+
+### Patch Changes
+
+- [`fa50a77`](https://github.com/JakobLierman/js-tooling/commit/fa50a7799922a3c1b9df8f2f826c51e03047cad5) Thanks [@JakobLierman](https://github.com/JakobLierman)! - chore: upgrade dependencies
+
 ## 3.0.4
 
 ### Patch Changes
