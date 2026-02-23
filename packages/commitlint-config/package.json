@@ -13,20 +13,20 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/index.d.mts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/index.d.mts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "require": "./dist/index.cjs"
     }
   },
   "scripts": {
-    "build": "tsup",
+    "build": "tsdown",
     "clean": "rm -rf dist .turbo",
-    "dev": "tsup --watch",
+    "dev": "tsdown --watch",
     "test": "vitest"
   },
   "dependencies": {
@@ -38,7 +38,7 @@
     "@commitlint/load": "^20.4.0",
     "@jakoblierman/tsconfig": "workspace:*",
     "@types/node": "^24",
-    "tsup": "^8.5.1",
+    "tsdown": "^0.20.3",
     "typescript": "^5.9.3",
     "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.0.18"

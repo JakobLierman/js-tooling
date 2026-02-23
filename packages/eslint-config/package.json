@@ -13,38 +13,38 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
     },
     "./react": {
-      "types": "./dist/react.d.ts",
-      "default": "./dist/react.js"
+      "types": "./dist/react.d.mts",
+      "default": "./dist/react.mjs"
     },
     "./nextjs": {
-      "types": "./dist/nextjs.d.ts",
-      "default": "./dist/nextjs.js"
+      "types": "./dist/nextjs.d.mts",
+      "default": "./dist/nextjs.mjs"
     },
     "./turborepo": {
-      "types": "./dist/turborepo.d.ts",
-      "default": "./dist/turborepo.js"
+      "types": "./dist/turborepo.d.mts",
+      "default": "./dist/turborepo.mjs"
     },
     "./vitest": {
-      "types": "./dist/vitest.d.ts",
-      "default": "./dist/vitest.js"
+      "types": "./dist/vitest.d.mts",
+      "default": "./dist/vitest.mjs"
     },
     "./jest": {
-      "types": "./dist/jest.d.ts",
-      "default": "./dist/jest.js"
+      "types": "./dist/jest.d.mts",
+      "default": "./dist/jest.mjs"
     }
   },
   "scripts": {
-    "build": "tsup",
+    "build": "tsdown",
     "clean": "rm -rf dist .turbo",
-    "dev": "tsup --watch",
+    "dev": "tsdown --watch",
     "test": "vitest"
   },
   "dependencies": {
@@ -74,7 +74,7 @@
     "@types/eslint": "^9.6.1",
     "@types/node": "^24",
     "eslint": "^10.0.1",
-    "tsup": "^8.5.1",
+    "tsdown": "^0.20.3",
     "typescript": "^5.9.3",
     "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.0.18"
