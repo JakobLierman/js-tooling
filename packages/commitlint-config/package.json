@@ -7,20 +7,19 @@
     "conventional-changelog"
   ],
   "version": "3.0.4",
+  "type": "module",
   "engines": {
     "node": ">=22.18.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.mts",
   "exports": {
     ".": {
       "types": "./dist/index.d.mts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "default": "./dist/index.mjs"
     }
   },
   "scripts": {

@@ -15,4 +15,5 @@ export default defineConfig((options) => ({
   minify: !options.watch,
   treeshake: true,
   clean: true,
+  inlineOnly: false, // TODO: Remove and fix the warnings
 }));
