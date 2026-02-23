@@ -19,14 +19,6 @@ export default {
       isBanned: true,
     },
     {
-      label:
-        'ensure all packages use whatever @t3-oss/env version the env package is using',
-      dependencyTypes: ['!peer'],
-      dependencies: ['@t3-oss/env-core', '@t3-oss/env-nextjs'],
-      packages: ['**'],
-      snapTo: ['@bdcs/env'],
-    },
-    {
       label: 'all Vite dependencies should all have the same version',
       dependencyTypes: ['!peer'],
       dependencies: ['vite', 'vitest', '@vitejs/**', '@vitest/**'],
