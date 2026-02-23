@@ -1,5 +1,11 @@
 # @jakoblierman/eslint-config
 
+## 2.0.0
+
+### Major Changes
+
+- [`601dc14`](https://github.com/JakobLierman/js-tooling/commit/601dc143538c5023734cbd5ed5c7c1e8fa9b3adc) Thanks [@JakobLierman](https://github.com/JakobLierman)! - feat: upgrade to eslint v10
+
 ## 1.1.3
 
 ### Patch Changes
