@@ -12,7 +12,7 @@ const config: Configuration = {
     'pnpm install --frozen-lockfile --no-save', // Check if package.json is in sync with lockfile
   ],
   '*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}': [
-    'eslint --cache --cache-file node_modules/.cache/.eslintcache --fix', // Lint and fix JavaScript and TypeScript files
+    'eslint --cache --cache-location node_modules/.cache/.eslintcache --fix', // Lint and fix JavaScript and TypeScript files
   ],
 };
 

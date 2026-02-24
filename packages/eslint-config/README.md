@@ -58,7 +58,7 @@ Extend your `.lintstagedrc` file with the following:
 ```json
 {
   "*.{js,jsx,ts,tsx}": [
-    "eslint --cache --cache-file node_modules/.cache/.eslintcache --fix"
+    "eslint --cache --cache-location node_modules/.cache/.eslintcache --fix"
   ]
 }
 ```

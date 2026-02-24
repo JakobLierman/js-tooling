@@ -1,7 +1,6 @@
 import * as fs from 'node:fs';
 import * as yaml from 'yaml';
 import { defineConfig } from 'vitest/config';
-import tsconfigPaths from 'vite-tsconfig-paths';
 
 /**
  * Gets the directories from the workspace yaml file.
@@ -66,5 +65,4 @@ export default defineConfig({
       },
     },
   },
-  plugins: [tsconfigPaths()],
 });

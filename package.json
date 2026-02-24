@@ -27,36 +27,35 @@
     "test:root": "vitest run"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^0.5.2",
-    "@changesets/cli": "^2.29.8",
-    "@commitlint/cli": "^20.4.2",
+    "@changesets/changelog-github": "^0.6.0",
+    "@changesets/cli": "^2.30.0",
+    "@commitlint/cli": "^20.5.0",
     "@jakoblierman/commitlint-config": "workspace:*",
     "@jakoblierman/eslint-config": "workspace:*",
     "@jakoblierman/prettier-config": "workspace:*",
     "@jakoblierman/tsconfig": "workspace:*",
-    "@vitest/coverage-v8": "^4.0.18",
-    "eslint": "^10.0.1",
+    "@vitest/coverage-v8": "^4.1.1",
+    "eslint": "^10.1.0",
     "husky": "^9.1.7",
     "jiti": "^2.6.1",
     "lint-staged": "^16",
     "prettier": "^3.8.1",
-    "syncpack": "^14.0.0",
+    "syncpack": "^14.2.1",
     "tsx": "^4.21.0",
-    "turbo": "~2.8.10",
-    "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^4.0.18",
-    "yaml": "^2.8.2"
+    "turbo": "~2.8.20",
+    "vitest": "^4.1.1",
+    "yaml": "^2.8.3"
   },
-  "packageManager": "pnpm@10.30.1",
+  "packageManager": "pnpm@10.32.1",
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild",
       "unrs-resolver"
     ],
-    "auditConfig": {
-      "ignoreGhsas": [
-        "GHSA-3ppc-4f35-3m26"
-      ]
+    "overrides": {
+      "flatted@<3.4.0": ">=3.4.0",
+      "flatted@<=3.4.1": ">=3.4.2",
+      "picomatch@<2.3.2": ">=2.3.2"
     }
   }
 }

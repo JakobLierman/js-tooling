@@ -123,6 +123,7 @@ const config: ConfigObject[] = defineConfig(
         { blankLine: 'always', prev: '*', next: 'return' },
       ],
       // @eslint-community/eslint-plugin-eslint-comments
+      // eslint-disable-next-line import/no-named-as-default-member -- Nah, keeping naming/import conventions for this file
       ...eslintCommentsPluginConfigs.recommended.rules,
     },
   },
