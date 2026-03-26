@@ -34,7 +34,7 @@
     "@jakoblierman/eslint-config": "workspace:*",
     "@jakoblierman/prettier-config": "workspace:*",
     "@jakoblierman/tsconfig": "workspace:*",
-    "@vitest/coverage-v8": "^4.1.1",
+    "@vitest/coverage-v8": "^4.1.2",
     "eslint": "^10.1.0",
     "husky": "^9.1.7",
     "jiti": "^2.6.1",
@@ -43,19 +43,14 @@
     "syncpack": "^14.2.1",
     "tsx": "^4.21.0",
     "turbo": "~2.8.20",
-    "vitest": "^4.1.1",
+    "vitest": "^4.1.2",
     "yaml": "^2.8.3"
   },
-  "packageManager": "pnpm@10.32.1",
+  "packageManager": "pnpm@10.33.0",
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild",
       "unrs-resolver"
-    ],
-    "overrides": {
-      "flatted@<3.4.0": ">=3.4.0",
-      "flatted@<=3.4.1": ">=3.4.2",
-      "picomatch@<2.3.2": ">=2.3.2"
-    }
+    ]
   }
 }
