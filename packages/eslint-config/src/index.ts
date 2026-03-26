@@ -34,7 +34,13 @@ const config: ConfigObject[] = defineConfig(
       'tmp/',
     ].flatMap((dir) => [dir, `**/${dir}`]),
   ),
-  { files: ['**/*.{js,jsx,ts,tsx,mjs,cjs}'] },
+  {
+    files: ['**/*.{js,jsx,ts,tsx,mjs,cjs}'],
+    languageOptions: {
+      parser,
+      parserOptions: { projectService: true },
+    },
+  },
   eslint.configs.recommended,
   nodePlugin.configs['flat/recommended'],
   importPlugin.flatConfigs.recommended,
@@ -135,12 +141,6 @@ const config: ConfigObject[] = defineConfig(
       jsdocPlugin.configs['flat/recommended-typescript'],
       importPlugin.flatConfigs.typescript,
     ],
-    languageOptions: {
-      parser,
-      parserOptions: {
-        projectService: true,
-      },
-    },
     rules: {
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/naming-convention': [
