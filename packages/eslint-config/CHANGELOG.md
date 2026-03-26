@@ -1,5 +1,11 @@
 # @jakoblierman/eslint-config
 
+## 2.1.0
+
+### Minor Changes
+
+- [`892b348`](https://github.com/JakobLierman/js-tooling/commit/892b3486fd85c1f1d60c15c428dc53608e4b4198) Thanks [@JakobLierman](https://github.com/JakobLierman)! - feat: react recommended rules
+
 ## 2.0.0
 
 ### Major Changes
