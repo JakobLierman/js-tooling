@@ -1,5 +1,11 @@
 # @jakoblierman/eslint-config
 
+## 2.1.1
+
+### Patch Changes
+
+- [`4592c84`](https://github.com/JakobLierman/js-tooling/commit/4592c844982469e1d62560c758a425a172b13c65) Thanks [@JakobLierman](https://github.com/JakobLierman)! - fix: typescript project linting settings
+
 ## 2.1.0
 
 ### Minor Changes
