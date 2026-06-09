@@ -3,6 +3,7 @@
   "display": "React",
   "extends": "./base.json",
   "compilerOptions": {
+    "types": ["node", "react", "react-dom"],
     "jsx": "preserve",
     "lib": ["dom", "dom.iterable", "esnext"]
   },

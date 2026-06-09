@@ -27,30 +27,24 @@
     "test:root": "vitest run"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^0.6.0",
-    "@changesets/cli": "^2.30.0",
-    "@commitlint/cli": "^20.5.0",
+    "@changesets/changelog-github": "^0.7.0",
+    "@changesets/cli": "^2.31.0",
+    "@commitlint/cli": "^21.0.2",
     "@jakoblierman/commitlint-config": "workspace:*",
     "@jakoblierman/eslint-config": "workspace:*",
     "@jakoblierman/prettier-config": "workspace:*",
     "@jakoblierman/tsconfig": "workspace:*",
-    "@vitest/coverage-v8": "^4.1.2",
-    "eslint": "^10.1.0",
+    "@vitest/coverage-v8": "^4.1.8",
+    "eslint": "^10.4.1",
     "husky": "^9.1.7",
-    "jiti": "^2.6.1",
-    "lint-staged": "^16",
-    "prettier": "^3.8.1",
-    "syncpack": "^14.2.1",
-    "tsx": "^4.21.0",
-    "turbo": "~2.8.20",
-    "vitest": "^4.1.2",
-    "yaml": "^2.8.3"
+    "jiti": "^2.7.0",
+    "lint-staged": "^17",
+    "prettier": "^3.8.3",
+    "syncpack": "^15.3.1",
+    "tsx": "^4.22.4",
+    "turbo": "~2.9.16",
+    "vitest": "^4.1.8",
+    "yaml": "^2.9.0"
   },
-  "packageManager": "pnpm@10.33.0",
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "unrs-resolver"
-    ]
-  }
+  "packageManager": "pnpm@11.5.2"
 }
