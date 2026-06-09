@@ -1,10 +1,9 @@
 import { defineConfig } from 'eslint/config';
-import { type ConfigObject } from '@eslint/core';
 import reactPlugin from '@eslint-react/eslint-plugin';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import baseConfig from '.';
 
-const config: ConfigObject[] = defineConfig(
+const config = defineConfig(
   baseConfig,
   reactPlugin.configs['strict-type-checked'],
   reactHooksPlugin.configs.flat['recommended-latest'],

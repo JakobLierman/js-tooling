@@ -42,9 +42,9 @@ describe('React ESLint Configuration', () => {
 
   describe('Unicorn rules overrides', () => {
     it('should have unicorn/consistent-function-scoping rule disabled', () => {
-      const overrideConfig = config
-        .toReversed()
-        .find((item) => item.rules?.['unicorn/consistent-function-scoping']);
+      const overrideConfig = config.findLast(
+        (item) => item.rules?.['unicorn/consistent-function-scoping'],
+      );
 
       expect(
         overrideConfig?.rules?.['unicorn/consistent-function-scoping'],

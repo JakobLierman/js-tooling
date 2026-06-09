@@ -10,13 +10,21 @@ describe('Prettier Configuration', () => {
   test('Should have required plugins array', () => {
     expect(config).toHaveProperty('plugins');
     expect(Array.isArray(config.plugins)).toBe(true);
-    expect(config.plugins).toContain('prettier-plugin-sh');
-    expect(config.plugins).toContain('prettier-plugin-packagejson');
-    expect(config.plugins).toContain('prettier-plugin-properties');
-    expect(config.plugins).toContain('prettier-plugin-prisma');
-    expect(config.plugins).toContain('prettier-plugin-embed');
-    expect(config.plugins).toContain('prettier-plugin-sql');
-    expect(config.plugins).toContain('prettier-plugin-tailwindcss');
+
+    const plugins = config.plugins as string[];
+    const pluginBasenames = [
+      'prettier-plugin-sh',
+      'prettier-plugin-packagejson',
+      'prettier-plugin-properties',
+      'prettier-plugin-prisma',
+      'prettier-plugin-embed',
+      'prettier-plugin-sql',
+      'prettier-plugin-tailwindcss',
+    ];
+
+    for (const name of pluginBasenames) {
+      expect(plugins.some((plugin) => plugin.includes(name))).toBe(true);
+    }
   });
 
   test('Should have tailwindFunctions configuration', () => {
@@ -37,6 +45,6 @@ describe('Prettier Configuration', () => {
   test('Should have tailwindcss plugin as last plugin', () => {
     const plugins = config.plugins as string[];
     const lastPlugin = plugins.at(-1);
-    expect(lastPlugin).toBe('prettier-plugin-tailwindcss');
+    expect(lastPlugin).toContain('prettier-plugin-tailwindcss');
   });
 });

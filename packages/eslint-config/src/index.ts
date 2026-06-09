@@ -1,5 +1,4 @@
 import { defineConfig, globalIgnores } from 'eslint/config';
-import { type ConfigObject } from '@eslint/core';
 import eslint from '@eslint/js';
 import { configs as tseslintConfigs, parser } from 'typescript-eslint';
 import nodePlugin from 'eslint-plugin-n';
@@ -22,7 +21,7 @@ export const testFiles = [
   '**/tests/**',
 ];
 
-const config: ConfigObject[] = defineConfig(
+const config = defineConfig(
   globalIgnores(
     [
       'node_modules/',

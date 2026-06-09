@@ -1,9 +1,8 @@
 import { defineConfig } from 'eslint/config';
-import { type ConfigObject } from '@eslint/core';
 import nextPlugin from '@next/eslint-plugin-next';
 import reactConfig from './react';
 
-const config: ConfigObject[] = defineConfig(
+const config = defineConfig(
   reactConfig,
   {
     plugins: { '@next/next': nextPlugin },
