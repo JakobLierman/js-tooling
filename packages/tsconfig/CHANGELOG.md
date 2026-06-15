@@ -1,5 +1,11 @@
 # @jakoblierman/tsconfig
 
+## 3.0.0
+
+### Major Changes
+
+- [`b1f865e`](https://github.com/JakobLierman/js-tooling/commit/b1f865e6406f812318b0ebbf13ca71862d3a60bf) Thanks [@JakobLierman](https://github.com/JakobLierman)! - chore: upgrade typescript
+
 ## 2.0.3
 
 ### Patch Changes
