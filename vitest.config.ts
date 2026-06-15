@@ -3,7 +3,7 @@ import * as yaml from 'yaml';
 import { defineConfig } from 'vitest/config';
 
 /**
- * Gets the directories from the workspace yaml file.
+ * Gets the directories from the workspace YAML file.
  * @example
  * ```yaml
  * # pnpm-workspace.yaml
@@ -19,10 +19,10 @@ import { defineConfig } from 'vitest/config';
  * @returns The directories list.
  */
 const getDirectories = (): string[] => {
-  // Read the workspace yaml file.
+  // Read the workspace YAML file.
   const workspaceFile = 'pnpm-workspace.yaml';
   const fileContents = fs.readFileSync(workspaceFile, 'utf8');
-  // Read the directories list from the workspace yaml file.
+  // Read the directories list from the workspace YAML file.
   const yamlContents = yaml.parse(fileContents) as {
     packages: string[];
   };

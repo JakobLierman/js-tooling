@@ -84,7 +84,7 @@ const config = defineConfig(
       ],
       'no-void': ['warn', { allowAsStatement: true }],
       // eslint-plugin-n
-      'n/no-missing-import': 'off', // Cannot handle Typescript path aliases
+      'n/no-missing-import': 'off', // Cannot handle TypeScript path aliases
       'n/no-unsupported-features/node-builtins': 'warn',
       'n/no-unpublished-import': 'off', // Can't seem to configure this properly
       // eslint-plugin-import
