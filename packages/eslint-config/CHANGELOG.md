@@ -1,5 +1,11 @@
 # @jakoblierman/eslint-config
 
+## 2.3.0
+
+### Minor Changes
+
+- [`ff91bab`](https://github.com/JakobLierman/js-tooling/commit/ff91bab206ee08fd94c9b79b174d2fb65d69dff4) Thanks [@JakobLierman](https://github.com/JakobLierman)! - feat: unicorn unopinionated rules
+
 ## 2.2.0
 
 ### Minor Changes
