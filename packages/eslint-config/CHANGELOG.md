@@ -1,5 +1,11 @@
 # @jakoblierman/eslint-config
 
+## 2.2.0
+
+### Minor Changes
+
+- [`04a4423`](https://github.com/JakobLierman/js-tooling/commit/04a44232880016b00823e71dc8af0e5d74463de8) Thanks [@JakobLierman](https://github.com/JakobLierman)! - chore: upgrade dependencies
+
 ## 2.1.1
 
 ### Patch Changes
