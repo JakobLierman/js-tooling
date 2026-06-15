@@ -3,7 +3,6 @@
   "extends": "@jakoblierman/tsconfig/base.json",
   "compilerOptions": {
     "jsx": "react",
-    "baseUrl": "./",
     "module": "preserve",
     "moduleResolution": "bundler",
     "paths": {

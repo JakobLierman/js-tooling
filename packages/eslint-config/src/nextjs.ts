@@ -1,3 +1,4 @@
+import { type ESLint } from 'eslint';
 import { defineConfig } from 'eslint/config';
 import nextPlugin from '@next/eslint-plugin-next';
 import reactConfig from './react';
@@ -5,7 +6,7 @@ import reactConfig from './react';
 const config = defineConfig(
   reactConfig,
   {
-    plugins: { '@next/next': nextPlugin },
+    plugins: { '@next/next': nextPlugin as unknown as ESLint.Plugin },
     rules: {
       // eslint-disable-next-line import/no-named-as-default-member -- No.
       ...nextPlugin.configs.recommended.rules,

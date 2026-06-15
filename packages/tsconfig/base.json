@@ -11,7 +11,6 @@
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "checkJs": false,
-    "downlevelIteration": true,
     "exactOptionalPropertyTypes": false,
     "inlineSources": false,
     "moduleDetection": "force",
@@ -20,11 +19,11 @@
     "resolveJsonModule": true,
     "sourceMap": true,
     "paths": {
-      "@/*": ["src/*"],
-      "@/test/*": ["test/*"],
-      "@/types/*": ["types/*"],
-      "@/config/*": ["config/*"],
-      "@/public/*": ["public/*"]
+      "@/*": ["./src/*"],
+      "@/test/*": ["./test/*"],
+      "@/types/*": ["./types/*"],
+      "@/config/*": ["./config/*"],
+      "@/public/*": ["./public/*"]
     }
   },
   "exclude": ["node_modules", "dist", "coverage"]

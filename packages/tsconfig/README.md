@@ -26,9 +26,7 @@ Create a `tsconfig.json` file in your project's root and extend this configurati
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@jakoblierman/tsconfig/base.json",
-  "compilerOptions": {
-    "baseUrl": "./",
-  },
+  "compilerOptions": {},
   "include": ["**/*"],
   "exclude": ["node_modules"],
   // Add additional configuration if needed
@@ -50,7 +48,7 @@ If you want to use additional path aliases, you'll need to add it to you tsconfi
   // ...
   "compilerOptions": {
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["./src/*"],
       // Add additional path aliases if needed
     },
   },
