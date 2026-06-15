@@ -40,9 +40,9 @@
     "@jakoblierman/tsconfig": "workspace:*",
     "tsdown": "^0.22.2",
     "typescript": "~6.0",
-    "vitest": "^4.1.8"
+    "vitest": "^4.1.9"
   },
   "peerDependencies": {
-    "prettier": "^3.8.3"
+    "prettier": "^3.8.4"
   }
 }

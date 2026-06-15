@@ -39,7 +39,7 @@
     "@types/node": "^24",
     "tsdown": "^0.22.2",
     "typescript": "~6.0",
-    "vitest": "^4.1.8"
+    "vitest": "^4.1.9"
   },
   "peerDependencies": {
     "@commitlint/cli": "^21.0.2"
