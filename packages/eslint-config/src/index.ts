@@ -45,7 +45,7 @@ const config = defineConfig(
   importPlugin.flatConfigs.recommended,
   regexpPluginConfigs['flat/recommended'],
   jsdocPlugin.configs['flat/recommended'],
-  unicornPlugin.configs.recommended,
+  unicornPlugin.configs.unopinionated,
   stylisticPlugin.configs.recommended,
   {
     plugins: {
@@ -101,13 +101,6 @@ const config = defineConfig(
       'jsdoc/no-defaults': 'off', // Some editors like this syntax, and extra documentation can't hurt
       'jsdoc/require-param': ['warn', { checkDestructured: false }], // Disable destructured checks, as they are not always necessary
       'jsdoc/check-param-names': ['warn', { checkDestructured: false }], // Disable destructured checks, as they are not always necessary
-      // eslint-plugin-unicorn
-      'unicorn/no-array-callback-reference': 'off', // Don't like this rule in their opinionated configuration
-      'unicorn/no-array-reduce': 'off',
-      'unicorn/no-useless-undefined': 'off',
-      'unicorn/switch-case-braces': 'off',
-      'unicorn/prefer-global-this': 'off',
-      'unicorn/prevent-abbreviations': 'off',
       // @eslint-community/eslint-plugin-eslint-comments
       '@eslint-community/eslint-comments/require-description': 'warn',
       // eslint-plugin-unused-imports
