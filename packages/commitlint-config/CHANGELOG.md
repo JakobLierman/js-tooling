@@ -1,5 +1,11 @@
 # @jakoblierman/commitlint-config
 
+## 4.1.1
+
+### Patch Changes
+
+- [`c4e2f7a`](https://github.com/JakobLierman/js-tooling/commit/c4e2f7ae5204b765a8b25137471499b26854fd7b) Thanks [@JakobLierman](https://github.com/JakobLierman)! - chore: upgrade dependencies
+
 ## 4.1.0
 
 ### Minor Changes
