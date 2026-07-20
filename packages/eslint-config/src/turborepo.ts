@@ -3,8 +3,7 @@ import { configs as turboPluginConfigs } from 'eslint-plugin-turbo';
 import { importNoExtraneousDependenciesConfig } from './import-no-extraneous-dependencies';
 
 const turboRecommendedConfig = turboPluginConfigs?.['flat/recommended'] as
-  | Config
-  | undefined;
+  Config | undefined;
 if (!turboRecommendedConfig)
   throw new Error('Turbo recommended config not found');
 
