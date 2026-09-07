@@ -1,5 +1,11 @@
 # @jakoblierman/tsconfig
 
+## 3.1.0
+
+### Minor Changes
+
+- [`f0c4354`](https://github.com/JakobLierman/js-tooling/commit/f0c4354f852964d45dcf29e7d2129b018e469af3) Thanks [@JakobLierman](https://github.com/JakobLierman)! - Support TypeScript 7 type-checking via a side-by-side install with the TypeScript 6 API for typescript-eslint.
+
 ## 3.0.1
 
 ### Patch Changes
