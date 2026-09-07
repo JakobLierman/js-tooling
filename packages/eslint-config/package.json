@@ -49,37 +49,38 @@
   },
   "dependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "~4.7.2",
-    "@eslint-react/eslint-plugin": "~5.17.3",
-    "@eslint/eslintrc": "~3.3.6",
+    "@eslint-react/eslint-plugin": "~5.19.0",
+    "@eslint/eslintrc": "~3.3.7",
     "@eslint/js": "~10.0.1",
-    "@next/eslint-plugin-next": "~16.2.10",
+    "@next/eslint-plugin-next": "~16.3.4",
     "@stylistic/eslint-plugin": "~5.10.0",
-    "@vitest/eslint-plugin": "~1.6.23",
-    "eslint-config-next": "~16.2.10",
+    "@vitest/eslint-plugin": "~1.6.27",
+    "eslint-config-next": "~16.3.4",
     "eslint-config-prettier": "~10.1.8",
     "eslint-import-resolver-typescript": "~4.4.5",
     "eslint-plugin-import": "~2.32.0",
-    "eslint-plugin-jest": "~29.15.4",
-    "eslint-plugin-jsdoc": "~63.2.0",
-    "eslint-plugin-n": "~18.2.2",
+    "eslint-plugin-jest": "~29.16.6",
+    "eslint-plugin-jsdoc": "~64.3.6",
+    "eslint-plugin-n": "~18.3.0",
     "eslint-plugin-prettier": "~5.5.6",
     "eslint-plugin-react-hooks": "~7.1.1",
-    "eslint-plugin-regexp": "~3.1.1",
-    "eslint-plugin-turbo": "~2.10.5",
-    "eslint-plugin-unicorn": "~72.0.0",
+    "eslint-plugin-regexp": "~3.3.0",
+    "eslint-plugin-turbo": "~2.10.12",
+    "eslint-plugin-unicorn": "~74.0.0",
     "eslint-plugin-unused-imports": "~4.4.1",
-    "typescript-eslint": "~8.64.0"
+    "typescript-eslint": "~8.69.0"
   },
   "devDependencies": {
     "@jakoblierman/tsconfig": "workspace:*",
     "@types/eslint": "^9.6.1",
     "@types/node": "^24",
-    "eslint": "^10.7.0",
-    "tsdown": "^0.22.12",
-    "typescript": "~6.0",
-    "vitest": "^4.1.10"
+    "@typescript/native": "npm:typescript@~7.0",
+    "eslint": "^10",
+    "tsdown": "^0.23.0",
+    "typescript": "npm:@typescript/typescript6@~6.0",
+    "vitest": "^5.0.0"
   },
   "peerDependencies": {
-    "eslint": "^10.7.0"
+    "eslint": "^10"
   }
 }

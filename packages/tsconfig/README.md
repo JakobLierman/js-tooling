@@ -2,6 +2,8 @@
 
 This package provides a custom [TypeScript](https://www.typescriptlang.org/) configuration to maintain consistent TypeScript usage across your projects.
 
+It supports TypeScript **6** and **7** (`peerDependencies`: `~6.0 || ~7.0`).
+
 ## Installation
 
 Install the package using your package manager of choice:
@@ -17,6 +19,26 @@ yarn add --dev typescript @jakoblierman/tsconfig
 ```bash
 pnpm add --save-dev typescript @jakoblierman/tsconfig
 ```
+
+### TypeScript 7 with ESLint (`typescript-eslint`)
+
+TypeScript 7 ships a native `tsc`, but does not yet expose a stable programmatic API. Tools that `import` TypeScript (including `typescript-eslint` / `@jakoblierman/eslint-config`) still need the TypeScript 6 API under the package name `typescript`.
+
+Use Microsoft’s side-by-side install so native type-checking uses 7 while lint keeps 6:
+
+```json
+{
+  "devDependencies": {
+    "@typescript/native": "npm:typescript@~7.0",
+    "typescript": "npm:@typescript/typescript6@~6.0"
+  }
+}
+```
+
+- `pnpm exec tsc` / `npx tsc` → TypeScript 7
+- `import "typescript"` (ESLint, etc.) → TypeScript 6 API
+
+If you only type-check and do not use type-aware ESLint, you can install `typescript@~7.0` directly.
 
 ## Usage
 

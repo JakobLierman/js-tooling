@@ -9,7 +9,7 @@ const config: Configuration = {
   'package.json': () => [
     'syncpack format', // Format package.json
     'syncpack lint', // Lint package.json
-    'pnpm install --frozen-lockfile --no-save', // Check if package.json is in sync with lockfile
+    'pnpm install --frozen-lockfile', // Check if package.json is in sync with lockfile
   ],
   '*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}': [
     'eslint --cache --cache-location node_modules/.cache/.eslintcache --fix', // Lint and fix JavaScript and TypeScript files

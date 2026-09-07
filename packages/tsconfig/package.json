@@ -25,18 +25,19 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@tsconfig/bun": "~1.0.10",
+    "@tsconfig/bun": "~1.0.11",
     "@tsconfig/next": "~2.0.6",
-    "@tsconfig/node-lts": "~24.0.0",
+    "@tsconfig/node-lts": "~24.0.1",
     "@tsconfig/recommended": "~1.0.13",
     "@tsconfig/strictest": "~2.0.8"
   },
   "devDependencies": {
     "@types/node": "^24",
-    "typescript": "~6.0",
-    "vitest": "^4.1.10"
+    "@typescript/native": "npm:typescript@~7.0",
+    "typescript": "npm:@typescript/typescript6@~6.0",
+    "vitest": "^5.0.0"
   },
   "peerDependencies": {
-    "typescript": "~6.0"
+    "typescript": "~6.0 || ~7.0"
   }
 }

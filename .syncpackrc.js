@@ -23,6 +23,23 @@ export default {
       dependencyTypes: ['!peer'],
       dependencies: ['vite', 'vitest', '@vitejs/**', '@vitest/**'],
     },
+    {
+      label: 'typescript peer supports 6 and 7',
+      dependencies: ['typescript'],
+      dependencyTypes: ['peer'],
+      pinVersion: '~6.0 || ~7.0',
+    },
+    {
+      label: 'typescript package name resolves to TypeScript 6 API',
+      dependencies: ['typescript'],
+      dependencyTypes: ['dev', 'prod'],
+      pinVersion: 'npm:@typescript/typescript6@~6.0',
+    },
+    {
+      label: 'native TypeScript 7 compiler alias',
+      dependencies: ['@typescript/native'],
+      pinVersion: 'npm:typescript@~7.0',
+    },
   ],
   semverGroups: [
     {
