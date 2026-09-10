@@ -1,5 +1,11 @@
 # @jakoblierman/prettier-config
 
+## 2.1.3
+
+### Patch Changes
+
+- [`baa87a2`](https://github.com/JakobLierman/js-tooling/commit/baa87a248ce64eb25bd9d205ac4d5c06a0b97ab3) Thanks [@JakobLierman](https://github.com/JakobLierman)! - fix: include built `dist/` artifacts in published packages so package exports resolve correctly.
+
 ## 2.1.2
 
 ### Patch Changes
